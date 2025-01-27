@@ -1,13 +1,19 @@
-package esami.epicode.Classi;
+package esami.epicode.Entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
-
+@Entity
 public abstract class TitoloDiViaggio {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private LocalDate dataAcquisto;
-    private PuntoDiAcquisto puntoDiAcquisto;
+    private PuntoVendita puntoDiAcquisto;
 
-    public TitoloDiViaggio(LocalDate dataAcquisto, PuntoDiAcquisto puntoDiAcquisto) {
+    public TitoloDiViaggio(LocalDate dataAcquisto, PuntoVendita puntoDiAcquisto) {
         this.dataAcquisto = dataAcquisto;
         this.puntoDiAcquisto = puntoDiAcquisto;
     }
@@ -31,11 +37,11 @@ public abstract class TitoloDiViaggio {
         this.id = id;
     }
 
-    public PuntoDiAcquisto getPunto_di_acquisto() {
+    public PuntoVendita getPunto_di_acquisto() {
         return puntoDiAcquisto;
     }
 
-    public void setPunto_di_acquisto(PuntoDiAcquisto puntoDiAcquisto) {
+    public void setPunto_di_acquisto(PuntoVendita puntoDiAcquisto) {
         this.puntoDiAcquisto = puntoDiAcquisto;
     }
 

@@ -1,12 +1,23 @@
-package esami.epicode.Classi;
+package esami.epicode.Entity;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
 public class Biglietto extends TitoloDiViaggio {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private boolean utilizzabile;
 
-    public Biglietto(LocalDate data_acquisto, PuntoDiAcquisto punto_di_acquisto) {
+    @ManyToOne
+    @JoinColumn(name = "rivenditore_autorizzato_id")
+    private Rivenditore_autorizzato rivenditore_autorizzato;
+
+    @ManyToOne
+    @JoinColumn(name = "macchinetta_id")
+    private Macchinetta macchinetta;
+
+    public Biglietto(LocalDate data_acquisto, PuntoVendita punto_di_acquisto) {
         super(data_acquisto, punto_di_acquisto);
         this.utilizzabile = true;
     }
@@ -39,4 +50,6 @@ public class Biglietto extends TitoloDiViaggio {
                 ", utilizzabile=" + utilizzabile +
                 "} " + super.toString();
     }
+
+
 }
