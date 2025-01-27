@@ -2,7 +2,8 @@ package esami.epicode.Entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-
+@Entity
+@Table (name = "biglietti")
 public class Biglietto extends TitoloDiViaggio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,7 @@
 package esami.epicode.entities;
 
+import esami.epicode.Entity.Biglietto;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -2,6 +2,8 @@ package esami.epicode.Entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+@Entity
+@Table(name = "tessere")
 public class Tessera {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +24,7 @@ public class Tessera {
     public Tessera(LocalDate data_attivazione, LocalDate scadenza) {
         this.data_attivazione = data_attivazione;
         this.scadenza = scadenza;
-        this.abbonamento = null;
+
         //this.id_utente = id_utente;
     }
 

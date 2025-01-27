@@ -1,21 +1,23 @@
 package esami.epicode.Entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 @Entity
+@Table(name = "titoli_di_viaggio")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "Tipologia", discriminatorType = DiscriminatorType.STRING)
 public abstract class TitoloDiViaggio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private LocalDate dataAcquisto;
-    private PuntoVendita puntoDiAcquisto;
+    @ManyToOne
+    @JoinColumn(name = "puntoVendita_id")
+    private PuntoVendita puntoVendita;
 
-    public TitoloDiViaggio(LocalDate dataAcquisto, PuntoVendita puntoDiAcquisto) {
+    public TitoloDiViaggio(LocalDate dataAcquisto, PuntoVendita puntoVendita) {
         this.dataAcquisto = dataAcquisto;
-        this.puntoDiAcquisto = puntoDiAcquisto;
+        this.puntoVendita = puntoVendita;
     }
 
     public TitoloDiViaggio() {
@@ -38,11 +40,11 @@ public abstract class TitoloDiViaggio {
     }
 
     public PuntoVendita getPunto_di_acquisto() {
-        return puntoDiAcquisto;
+        return puntoVendita;
     }
 
-    public void setPunto_di_acquisto(PuntoVendita puntoDiAcquisto) {
-        this.puntoDiAcquisto = puntoDiAcquisto;
+    public void setPunto_di_acquisto(PuntoVendita puntoVendita) {
+        this.puntoVendita = puntoVendita;
     }
 
     @Override
@@ -50,7 +52,7 @@ public abstract class TitoloDiViaggio {
         return "TitoloDiViaggio{" +
                 "id=" + id +
                 ", dataAcquisto=" + dataAcquisto +
-                ", puntoDiAcquisto=" + puntoDiAcquisto +
+                ", puntoVendita=" + puntoVendita +
                 '}';
     }
 }

@@ -12,7 +12,7 @@ public class Macchinetta extends PuntoVendita {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToMany(mappedBy = "macchinette")
+    @OneToMany(mappedBy = "macchinetta")
     List<Biglietto> biglietti = new ArrayList<>();
 
     public Macchinetta(boolean attivo, LocalDate data_Emissione) {

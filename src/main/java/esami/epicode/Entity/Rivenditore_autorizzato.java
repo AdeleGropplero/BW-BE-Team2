@@ -12,9 +12,9 @@ public class Rivenditore_autorizzato extends PuntoVendita {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToMany(mappedBy = "Rivenditore_autorizzato")
+    @OneToMany(mappedBy = "puntoVendita")
     @OrderBy("id ASC")
-    List<TitoloDiViaggio> titoliDiViaggio = new ArrayList<>();
+    private List<TitoloDiViaggio> titoliDiViaggio;
 
 
     public Rivenditore_autorizzato(boolean attivo, LocalDate data_Emissione) {
