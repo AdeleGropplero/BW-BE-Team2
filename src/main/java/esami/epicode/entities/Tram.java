@@ -1,10 +1,11 @@
 package esami.epicode.entities;
 
-import java.util.List;
+import javax.persistence.Entity;
 
+
+@Entity
 public class Tram extends Veicolo {
 
-    private long id;
     private static int capienza= 40;
 
     public Tram (){
@@ -24,18 +25,11 @@ public class Tram extends Veicolo {
         Tram.capienza = capienza;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     @Override
     public String toString() {
         return "Tram{" +
-                "id=" + id +
+                "id=" +
                 '}';
     }
 
@@ -45,6 +39,7 @@ public class Tram extends Veicolo {
         b.setUtilizzabile(false);
         return b;
     }
+
 
 
 

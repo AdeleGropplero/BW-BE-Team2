@@ -1,16 +1,35 @@
 package esami.epicode.entities;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipologia", discriminatorType = DiscriminatorType.STRING)
 public abstract class Veicolo {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codiceVeicolo;
+
+
     private boolean inServizio;
+
+    @ManyToOne
+    @JoinColumn(name = "periodo_id")
     private Periodo periodo;
+
     private int numBigliettiVidimati;
+
+    @ManyToOne
+    @JoinColumn(name = "tratta_id")
     private Tratta tratta;
+
+    @ManyToOne
+    @JoinColumn(name = "parco_mezzi_id")
+    private ParcoMezzi parcoMezzi;
 
     public  Veicolo(){
 

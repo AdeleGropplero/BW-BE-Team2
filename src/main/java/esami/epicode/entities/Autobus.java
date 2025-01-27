@@ -1,9 +1,14 @@
 package esami.epicode.entities;
 
+import javax.persistence.Entity;
+
+
+@Entity
 public class Autobus extends Veicolo {
 
-    private long id;
+
     private static int capienza= 60;
+
 
     public Autobus() {
 
@@ -22,18 +27,14 @@ public class Autobus extends Veicolo {
         Autobus.capienza = capienza;
     }
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+
+
 
     @Override
     public String toString() {
         return "Autobus{" +
-                "id=" + id +
+                "id=" +
                 '}';
     }
 
