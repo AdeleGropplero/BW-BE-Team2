@@ -19,7 +19,7 @@ public abstract class TitoloDiViaggio {
         this.dataAcquisto = dataAcquisto;
         this.puntoVendita = puntoVendita;
     }
-
+//
     public TitoloDiViaggio() {
     }
 
