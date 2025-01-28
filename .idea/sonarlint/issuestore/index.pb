@@ -11,8 +11,6 @@ a
 1src/main/java/esami/epicode/entities/Periodo.java,5\4\5432c76ab12d25fd289fdf86e2c9be0f99be746d
 `
 0src/main/java/esami/epicode/entities/Tratta.java,0\b\0bf3472b4ae30e66b8e869d0bdec2d1f6d94433a
-c
-3src/main/java/esami/epicode/entities/Biglietto.java,d\9\d97bab0002596cc84cf12a297051108dfd3ae7a2
 d
 4src/main/java/esami/epicode/entities/ParcoMezzi.java,5\6\56aec197222ffac122997c59530053d4773a7ef8
 Å
