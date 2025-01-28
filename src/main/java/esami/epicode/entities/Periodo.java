@@ -1,9 +1,6 @@
 package esami.epicode.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -13,6 +10,9 @@ public class Periodo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @ManyToOne
+    @JoinColumn(name = "veicolo_codVeicolo")
+    private Veicolo veicolo;
     private LocalDate dataInizio;
     private LocalDate dataFine;
 

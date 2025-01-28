@@ -19,8 +19,7 @@ public abstract class Veicolo {
 
     private boolean inServizio;
 
-    @ManyToOne
-    @JoinColumn(name = "periodo_id")
+    @OneToMany(mappedBy = "veicolo", cascade = CascadeType.ALL)
     private Periodo periodo;
 
     private int numBigliettiVidimati;
