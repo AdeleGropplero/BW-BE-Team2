@@ -21,12 +21,13 @@ public class Tessera {
     public Tessera() {
     }
 
-    public Tessera(LocalDate data_attivazione, LocalDate scadenza) {
+    public Tessera(LocalDate data_attivazione) {
         this.data_attivazione = data_attivazione;
-        this.scadenza = scadenza;
+        this.scadenza = getData_attivazione().plusDays(365);
 
         //this.id_utente = id_utente;
     }
+
 
     public long getId() {
         return id;
