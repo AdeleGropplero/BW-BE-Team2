@@ -15,7 +15,7 @@ public class Abbonamento extends TitoloDiViaggio{
     private Cadenza cadenza;
     @OneToOne
     @JoinColumn(name = "tessera_id")
-    private Tessera tessera;
+    private long tessera_id;
     private LocalDate data_di_scadenza;
 
     @ManyToOne
@@ -25,10 +25,11 @@ public class Abbonamento extends TitoloDiViaggio{
     public Abbonamento() {
     }
 
-    public Abbonamento(LocalDate dataAcquisto, PuntoVendita puntoDiAcquisto, Cadenza cadenza) {
+    public Abbonamento(LocalDate dataAcquisto, PuntoVendita puntoDiAcquisto, Cadenza cadenza, long tessera_id) {
         super(dataAcquisto, puntoDiAcquisto);
         this.cadenza = cadenza;
         this.data_di_scadenza = gestioneScadenze();
+        this.tessera_id = tessera_id;
     }
 
     public LocalDate gestioneScadenze(){
@@ -57,12 +58,12 @@ public class Abbonamento extends TitoloDiViaggio{
         this.cadenza = cadenza;
     }
 
-    public Tessera getN_tessera() {
-        return tessera;
+    public long getN_tessera() {
+        return tessera_id;
     }
 
-    public void setN_tessera(Tessera tessera) {
-        this.tessera = Abbonamento.this.tessera;
+    public void setN_tessera_id(Tessera tessera_id) {
+        this.tessera_id = Abbonamento.this.tessera_id;
     }
 
     public LocalDate getData_di_scadenza() {
@@ -78,7 +79,7 @@ public class Abbonamento extends TitoloDiViaggio{
         return "Abbonamento{" +
                 "id=" + id +
                 ", cadenza=" + cadenza +
-                ", tessera=" + tessera +
+                ", tessera_id=" + tessera_id +
                 ", data_di_scadenza=" + data_di_scadenza +
                 "} " + super.toString();
     }
