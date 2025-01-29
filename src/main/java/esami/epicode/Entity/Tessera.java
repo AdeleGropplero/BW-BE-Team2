@@ -11,7 +11,7 @@ public class Tessera {
     private LocalDate data_attivazione;
     private LocalDate scadenza;
 
-    @OneToOne(mappedBy = "tessera")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "tessera")
     private Abbonamento abbonamento;
 
     @OneToOne

@@ -16,10 +16,10 @@ public class Main
     public static EntityManager em = emf.createEntityManager();
     public static void main( String[] args ) {
 
-<<<<<<< HEAD
+
 
         Scanner sc = new Scanner(System.in);
-=======
+
         Veicolo v = new Tram();
         ParcoMezzi pm = new ParcoMezzi();
 
@@ -27,7 +27,7 @@ public class Main
 
         pmd.saveParcoMezzi(pm);
         pmd.saveVeicolo(v);
->>>>>>> Gioele
+
 
         em.close();
         emf.close();

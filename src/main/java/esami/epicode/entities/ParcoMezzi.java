@@ -45,31 +45,41 @@ public class ParcoMezzi {
         this.veicoli = veicoli;
     }
 
-    public void putManutenzione(Veicolo a){
-        a.getPeriodo().setDataInizio(LocalDate.now());
+    public void putManutenzione(Veicolo a) {
+        Periodo periodo = new Periodo();
+        periodo.setDataInizio(LocalDate.now());
+        a.getPeriodi().add(periodo);
         periodiVeicoli.add(a);
     }
 
-    public void leftManutenzione(long codiceVeicolo, LocalDate data){
-        for(Veicolo veicolo : periodiVeicoli){
-            if(veicolo.getCodiceVeicolo()==codiceVeicolo){
-                veicolo.getPeriodo().setDataFine(data);
+    public void leftManutenzione(long codiceVeicolo, LocalDate data) {
+        for (Veicolo veicolo : periodiVeicoli) {
+            if (veicolo.getCodiceVeicolo() == codiceVeicolo) {
+                for (Periodo periodo : veicolo.getPeriodi()) {
+                    if (periodo.getDataFine() == null) {
+                        periodo.setDataFine(data);
+                    }
+                }
             }
         }
     }
 
-    public void printPeriodi(){
-        for(Veicolo veicolo : periodiVeicoli){
-            System.out.println("Veicolo: " + veicolo.getCodiceVeicolo() + " inizio manutenzione: " +veicolo.getPeriodo().getDataInizio());
-            System.out.println("fine manutenzione: " +veicolo.getPeriodo().getDataFine());
+    public void printPeriodi() {
+        for (Veicolo veicolo : periodiVeicoli) {
+            for (Periodo periodo : veicolo.getPeriodi()) {
+                System.out.println("Veicolo: " + veicolo.getCodiceVeicolo() + " inizio manutenzione: " + periodo.getDataInizio());
+                System.out.println("fine manutenzione: " + periodo.getDataFine());
+            }
         }
     }
 
-    public List<Periodo> getPeriodiByCodiceVeicolo (long codiceVeicolo){
+    public List<Periodo> getPeriodiByCodiceVeicolo(long codiceVeicolo) {
         List<Periodo> periodi = new ArrayList<>();
-        for(Veicolo veicolo : periodiVeicoli){
-            if(veicolo.getCodiceVeicolo()== codiceVeicolo){
-                periodi.add(veicolo.getPeriodo());
+        for (Veicolo veicolo : periodiVeicoli) {
+            if (veicolo.getCodiceVeicolo() == codiceVeicolo) {
+                for (Periodo periodo : veicolo.getPeriodi()) {
+                    periodi.add(periodo);
+                }
             }
         }
         return periodi;

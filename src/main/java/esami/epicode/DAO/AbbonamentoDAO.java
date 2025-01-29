@@ -63,13 +63,13 @@ public class AbbonamentoDAO {
                     case 1:
                         System.out.println("Hai scelto un abbonamento SETTIMANALE!");
                         Cadenza cadenzaSettimanale = Cadenza.SETTIMANALE;
-                        Abbonamento a = new Abbonamento(LocalDate.now(), rivenditore, cadenzaSettimanale, tessera.getId());
+                        Abbonamento a = new Abbonamento(LocalDate.now(), rivenditore, cadenzaSettimanale, tessera);
                         save(a);
                         break;
                     case 2:
                         System.out.println("Hai scelto un abbonamento MENSILE!");
                         Cadenza cadenzaMensile = Cadenza.MENSILE;
-                        Abbonamento b = new Abbonamento(LocalDate.now(), rivenditore, cadenzaMensile, tessera.getId());
+                        Abbonamento b = new Abbonamento(LocalDate.now(), rivenditore, cadenzaMensile, tessera);
                         save(b);
                         break;
                     default:

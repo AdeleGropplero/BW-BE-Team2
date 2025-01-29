@@ -16,11 +16,12 @@ public abstract class Veicolo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codiceVeicolo;
 
+//    private int tempoImpiegato;
 
     private boolean inServizio;
 
     @OneToMany(mappedBy = "veicolo", cascade = CascadeType.ALL)
-    private Periodo periodo;
+    private List<Periodo> periodi;
 
     private int numBigliettiVidimati;
 
@@ -40,6 +41,7 @@ public abstract class Veicolo {
         this.inServizio = inServizio;
         this.tratta = tratta;
         this.numBigliettiVidimati = 0;
+
     }
 
 
@@ -67,12 +69,12 @@ public abstract class Veicolo {
         this.numBigliettiVidimati = numBigliettiVidimati;
     }
 
-    public Periodo getPeriodo() {
-        return periodo;
+    public List<Periodo> getPeriodi() {
+        return periodi;
     }
 
-    public void setPeriodi(Periodo periodo) {
-        this.periodo = periodo;
+    public void setPeriodi(List<Periodo> periodi) {
+        this.periodi = periodi;
     }
 
     public Tratta getTratta() {
@@ -83,12 +85,14 @@ public abstract class Veicolo {
         this.tratta = tratta;
     }
 
+
+
     @Override
     public String toString() {
         return "Veicolo{" +
                 ", codiceVeicolo=" + codiceVeicolo +
                 ", inServizio=" + inServizio +
-                ", periodi=" + periodo +
+                ", periodi=" + periodi +
                 ", numBigliettiVidimati=" + numBigliettiVidimati +
                 ", tratta=" + tratta;
     }
