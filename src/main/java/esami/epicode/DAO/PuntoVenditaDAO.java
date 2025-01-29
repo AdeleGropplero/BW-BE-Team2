@@ -19,6 +19,8 @@ public class PuntoVenditaDAO {
 
     MacchinettaDAO macchinettaDAO = new MacchinettaDAO(em);
     Rivenditore_autorizzatoDAO rivenditoreDAO = new Rivenditore_autorizzatoDAO(em);
+    UtenteDAO utenteDAO = new UtenteDAO(em);
+    TesseraDAO tesseraDAO = new TesseraDAO(em);
 
     public void save(PuntoVendita e) {
         em.getTransaction().begin();
@@ -78,14 +80,17 @@ public class PuntoVenditaDAO {
 
                 switch (titoloDiViaggio) {
                     case "1":
-                        //metodo acquista biglietto
+                        //metodo acquista biglietto 🟩
                         acquistaBiglietto(rivenditore);
                         break;
                     case "2":
+                        //metodo acquisto abbonamento 🟩
                         abbonamentoDAO.acquistoAbbonamento(rivenditore);
                         break;
                     case  "3":
-                        //creare registrazione utente 🟥
+                        //metodo registrazione utente 🟩
+                        Utente utente = utenteDAO.createUtente();
+                        tesseraDAO.createTessera(utente.getId());
                         break;
                     default:
                         System.out.println("Per favore inserisci un valore valido");
