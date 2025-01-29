@@ -33,8 +33,8 @@ public class TesseraDAO {
         em.getTransaction().commit();
     }
 
-    public void createTessera(){
-        long id= Utilities.getLong("Inserisci il tuo id");
+    public void createTessera(long id){
+      //  long id= Utilities.getLong("Inserisci il tuo id");
         Tessera t = new Tessera();
         Utente u = ud.findById(id);
 
