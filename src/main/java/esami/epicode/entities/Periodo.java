@@ -2,6 +2,7 @@ package esami.epicode.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Periodo {

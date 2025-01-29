@@ -76,7 +76,7 @@ public class ParcoMezziDao {
         Periodo p = new Periodo();
         p.setDataInizio(LocalDate.now());
         savePeriodo(p);
-        a.setPeriodi(p);
+        a.getPeriodi().add(p);
         pm.getPeriodiVeicoli().add(a);
 
 
