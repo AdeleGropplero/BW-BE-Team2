@@ -38,9 +38,9 @@ public abstract class Veicolo {
 
     }
 
-    public Veicolo(boolean inServizio, List<Tratta> tratte) {
+    public Veicolo(boolean inServizio) {
         this.inServizio = inServizio;
-        this.tratte = tratte;
+        this.tratte = new ArrayList<>();
         this.numBigliettiVidimati = 0;
 
     }

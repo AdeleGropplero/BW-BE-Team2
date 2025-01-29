@@ -20,7 +20,8 @@ TesseraDAO td = new TesseraDAO(em);
 PuntoVenditaDAO pd = new PuntoVenditaDAO(em);
 
 private String text = "Digita 1 per passare alla modalità amministratore \n" +
-        "digita 2 se sei un utente \n";
+        "Digita 2 se sei un utente \n" +
+        "Digita 3 per Viaggiare";
 
 
     public void start (){
@@ -36,6 +37,12 @@ private String text = "Digita 1 per passare alla modalità amministratore \n" +
             case "2":
                 // Utente
                 pd.operazioniUtente();
+                break;
+
+            case "3":
+                //Tratta
+                System.out.println();
+
                 break;
 
             case "7":

@@ -34,6 +34,18 @@ public class Biglietto extends TitoloDiViaggio {
         this.utilizzabile = utilizzabile;
     }
 
+    public LocalDate getUtilizzabile() {
+        return utilizzabile;
+    }
+
+    public Rivenditore_autorizzato getRivenditore_autorizzato() {
+        return rivenditore_autorizzato;
+    }
+
+    public Macchinetta getMacchinetta() {
+        return macchinetta;
+    }
+
     @Override
     public long getId() {
         return id;

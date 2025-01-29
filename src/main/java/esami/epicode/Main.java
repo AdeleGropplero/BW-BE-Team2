@@ -3,6 +3,7 @@ package esami.epicode;
 import esami.epicode.DAO.MacchinettaDAO;
 import esami.epicode.DAO.ParcoMezziDao;
 import esami.epicode.DAO.Rivenditore_autorizzatoDAO;
+import esami.epicode.DAO.TrattaDAO;
 import esami.epicode.entities.ParcoMezzi;
 import esami.epicode.entities.Tram;
 import esami.epicode.entities.Veicolo;
@@ -25,7 +26,10 @@ public class Main
         macchinettaDAO.istanziaMacchinette(); //create quattro macchinette.
 
         Rivenditore_autorizzatoDAO rivenditoreDAO = new Rivenditore_autorizzatoDAO(em);
-        rivenditoreDAO.istanziaRivenditore(); //create quattro rivenditori.
+        rivenditoreDAO.istanziaRivenditore(); //creati quattro rivenditori.
+
+        TrattaDAO trattaDAO = new TrattaDAO(em);
+        trattaDAO.istanziaTratta(); //create quattro tratte.
 
         Veicolo v = new Tram();
         ParcoMezzi pm = new ParcoMezzi();

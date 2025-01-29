@@ -21,16 +21,22 @@ public class Tratta {
     @ManyToMany(mappedBy = "tratta", cascade = CascadeType.ALL)
     private List<Veicolo> veicoli = new ArrayList<>();
 
-    public Tratta(String partenza, String capolinea, int tempoPrevisto, int tempoEffettivo) {
+    public Tratta(String partenza, String capolinea, int tempoPrevisto) {
         this.partenza = partenza;
         this.capolinea = capolinea;
         this.tempoPrevisto = tempoPrevisto;
-        this.tempoEffettivo = tempoEffettivo;
+        this.tempoEffettivo = calcTempoEffettivo();
 
     }
 
     public Tratta() {
     }
+
+    public int calcTempoEffettivo(){
+        int tempoEffettivo = (int) (tempoPrevisto + (Math.random() * 31));
+        return tempoEffettivo;
+    }
+
 
     public long getId() {
         return id;
@@ -71,7 +77,6 @@ public class Tratta {
     public void setTempoEffettivo(int tempoEffettivo) {
         this.tempoEffettivo = tempoEffettivo;
     }
-
 
 
     @Override

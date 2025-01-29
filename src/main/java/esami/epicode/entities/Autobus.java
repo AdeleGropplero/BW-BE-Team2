@@ -16,8 +16,8 @@ public class Autobus extends Veicolo {
 
     }
 
-    public Autobus(boolean inServizio, Tratta tratta) {
-        super(inServizio, tratta);
+    public Autobus(boolean inServizio) {
+        super(inServizio);
 
     }
 
@@ -44,7 +44,7 @@ public class Autobus extends Veicolo {
     public Biglietto obliteraBiglietto(Biglietto b) {
         this.setNumBigliettiVidimati(this.getNumBigliettiVidimati()+1);
         b.setUtilizzabile(false);
-        return b;
+        return b; // 🟥 da sistemare
     }
 
 

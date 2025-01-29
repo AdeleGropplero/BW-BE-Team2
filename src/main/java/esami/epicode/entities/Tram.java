@@ -14,8 +14,8 @@ public class Tram extends Veicolo {
 
     }
 
-    public Tram(boolean inServizio, Tratta tratta) {
-        super(inServizio, tratta);
+    public Tram(boolean inServizio) {
+        super(inServizio);
 
     }
 
@@ -40,7 +40,7 @@ public class Tram extends Veicolo {
         this.setNumBigliettiVidimati(this.getNumBigliettiVidimati()+1);
         b.setUtilizzabile(false);
         return b;
-    }
+    } // 🟥 da sistemare
 
 
 
