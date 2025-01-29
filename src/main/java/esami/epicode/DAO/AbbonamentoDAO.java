@@ -6,6 +6,7 @@ import esami.epicode.Entity.Rivenditore_autorizzato;
 import esami.epicode.Entity.Tessera;
 import esami.epicode.Enum.Cadenza;
 import esami.epicode.Exception.tesseraNonEsistenteException;
+import esami.epicode.Utilities.Utilities;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -48,25 +49,25 @@ public class AbbonamentoDAO {
         }
     }
 
-    public void acquistoAbbonamento(java.util.Scanner sc, Rivenditore_autorizzato rivenditore) { // 🟦
+    public void acquistoAbbonamento(Rivenditore_autorizzato rivenditore) { // 🟦
         System.out.println("Acquisto abbonamento : Inserisci il tuo numero di tessera: ");
         Query q = em.createQuery("SELECT t FROM Tessera t WHERE t.id = :nTessera");
-        q.setParameter("nTessera", sc.nextLine());
+        q.setParameter("nTessera", Utilities.sc.nextLine());
         Tessera tessera = (Tessera) q.getSingleResult();
         if (tessera != null) {
             if (tessera.getScadenza().isAfter(LocalDate.now())) {
                 System.out.println("Selezionare 1 per abbonamento SETTIMANALE :");
                 System.out.println("Selezionare 2 per abbonamento MENSILE :");
-                int tipologiaAbbonamento = sc.nextInt();
-                sc.nextLine();
+                String tipologiaAbbonamento = Utilities.sc.nextLine();
+
                 switch (tipologiaAbbonamento) {
-                    case 1:
+                    case "1":
                         System.out.println("Hai scelto un abbonamento SETTIMANALE!");
                         Cadenza cadenzaSettimanale = Cadenza.SETTIMANALE;
                         Abbonamento a = new Abbonamento(LocalDate.now(), rivenditore, cadenzaSettimanale, tessera.getId());
                         save(a);
                         break;
-                    case 2:
+                    case "2":
                         System.out.println("Hai scelto un abbonamento MENSILE!");
                         Cadenza cadenzaMensile = Cadenza.MENSILE;
                         Abbonamento b = new Abbonamento(LocalDate.now(), rivenditore, cadenzaMensile, tessera.getId());
@@ -78,16 +79,16 @@ public class AbbonamentoDAO {
                 }
             } else {
                 System.out.println("La tua tessera è scaduta, seleziona 1 per rinnovare, seleziona 2 per uscire! ");
-                int sceltaUtente = sc.nextInt();
-                sc.nextLine();
+                String sceltaUtente = Utilities.sc.nextLine();
+
                 switch (sceltaUtente) {
-                    case 1:
+                    case "1":
                         tessera.setData_attivazione(LocalDate.now());
                         System.out.println("Tessera rinnovata con scadenza il giorno :" + LocalDate.now().plusDays(365));
                         break;
-                    case 2:
+                    case "2":
                         System.out.println("Chiudo...");
-                        sc.close();
+                        Utilities.sc.close();
                         return;
                     default:
                         System.out.println("Per favore inserisci un valore valido");

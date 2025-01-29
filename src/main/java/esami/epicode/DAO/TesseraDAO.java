@@ -9,7 +9,6 @@ import java.time.LocalDate;
 
 public class TesseraDAO {
 
-
     EntityManager em;
     UtenteDAO ud = new UtenteDAO(em);
 
@@ -18,6 +17,21 @@ public class TesseraDAO {
 
     }
 
+    public void save(Tessera e) {
+        em.getTransaction().begin();
+        em.persist(e);
+        em.getTransaction().commit();
+    }
+
+    public Tessera getByID(long id) {
+        return em.find(Tessera.class, id);
+    }
+
+    public void delete(Tessera e) {
+        em.getTransaction().begin();
+        em.remove(e);
+        em.getTransaction().commit();
+    }
 
     public void createTessera(){
         long id= Utilities.getLong("Inserisci il tuo id");
@@ -34,5 +48,6 @@ public class TesseraDAO {
         }
     }
 
+>>>>>>> Gioele
 
 }

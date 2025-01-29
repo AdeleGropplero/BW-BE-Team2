@@ -3,6 +3,7 @@ package esami.epicode.DAO;
 import esami.epicode.Entity.*;
 import esami.epicode.Enum.Cadenza;
 import esami.epicode.Exception.NessunTitoloTrovatoException;
+import esami.epicode.Utilities.Utilities;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -15,6 +16,9 @@ public class PuntoVenditaDAO {
     public PuntoVenditaDAO(EntityManager em) {
         this.em = em;
     }
+
+    MacchinettaDAO macchinettaDAO = new MacchinettaDAO(em);
+    Rivenditore_autorizzatoDAO rivenditoreDAO = new Rivenditore_autorizzatoDAO(em);
 
     public void save(PuntoVendita e) {
         em.getTransaction().begin();
@@ -46,40 +50,42 @@ public class PuntoVenditaDAO {
         return risultati;
     }
 
-    public void AcquistaTitoloDiViaggio(java.util.Scanner sc) {
+    public void operazioniUtente() {
         AbbonamentoDAO abbonamentoDAO = new AbbonamentoDAO(em);
 
         System.out.println("Da quale punto vendita stai acquistando?");
         System.out.println("Seleziona -1- per le macchinette");
         System.out.println("Seleziona -2- per i rivenditori autorizzati");
-        int puntoVendita = sc.nextInt();
-        sc.nextLine();
+        int puntoVendita = Utilities.sc.nextInt();
+        Utilities.sc.nextLine();
 
         switch (puntoVendita) {
             case 1:
-                //istanzia obj macchinetta
-                Macchinetta macchinetta = saveMacchinetta();
-                //-----------------------------------------
-                System.out.println("Hai selezionato macchinette, procediamo all'acquisto del biglietto");
-                //metodo acquista biglietto
+                //All'utente verrà chiesto di selezionare la location della macchinetta (vedi MacchinettaDAO)
+                Macchinetta macchinetta = macchinettaDAO.sceltaMacchinetta();
+                //Verrà ora istanziato e salvato un oggetto biglietto, con location specifica.
                 acquistaBiglietto(macchinetta);
                 break;
             case 2:
-                //istanzia obj rivenditore e salvati l'id
-                Rivenditore_autorizzato rivenditore = saveRivenditore();
-                //---------------------------------------------
-                System.out.println("Hai selezionato il rivenditore autorizzato, che operazione vuoi eseguire?");
+
+                Rivenditore_autorizzato rivenditore = rivenditoreDAO.sceltaRivenditore_autorizzato();
+
                 System.out.println("Seleziona -1- per acquistare un biglietto");
                 System.out.println("Seleziona -2- per acquistare un abbonamento");
-                int titoloDiViaggio = sc.nextInt();
-                sc.nextLine();
+                System.out.println("Seleziona -3- per creare una nuova tessera");
+
+                String titoloDiViaggio = Utilities.sc.nextLine();
+
                 switch (titoloDiViaggio) {
-                    case 1:
+                    case "1":
                         //metodo acquista biglietto
                         acquistaBiglietto(rivenditore);
                         break;
-                    case 2:
-                        abbonamentoDAO.acquistoAbbonamento(sc, rivenditore);
+                    case "2":
+                        abbonamentoDAO.acquistoAbbonamento(rivenditore);
+                        break;
+                    case  "3":
+                        //creare registrazione utente 🟥
                         break;
                     default:
                         System.out.println("Per favore inserisci un valore valido");
@@ -92,7 +98,7 @@ public class PuntoVenditaDAO {
         }
     }
 
-    public Rivenditore_autorizzato saveRivenditore() {
+/*    public Rivenditore_autorizzato saveRivenditore() {
         Rivenditore_autorizzato r = new Rivenditore_autorizzato(true, LocalDate.now());
         save(r);
         return r;
@@ -102,7 +108,7 @@ public class PuntoVenditaDAO {
         Macchinetta m = new Macchinetta(true, LocalDate.now());
         save(m);
         return m;
-    }
+    }*/
 
     public void acquistaBiglietto(PuntoVendita p) {
         Biglietto b = new Biglietto(LocalDate.now(), p);

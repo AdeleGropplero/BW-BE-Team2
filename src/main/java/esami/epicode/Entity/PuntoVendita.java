@@ -10,15 +10,25 @@ public abstract class PuntoVendita {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String location;
     private boolean attivo;
-    private LocalDate data_Emissione;
 
-    public PuntoVendita(boolean attivo, LocalDate data_Emissione) {
+
+    public PuntoVendita(String location, boolean attivo) {
+        this.location = location;
         this.attivo = attivo;
-        this.data_Emissione = data_Emissione;
+
     }
 
     public PuntoVendita() {
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public long getId() {
@@ -37,20 +47,13 @@ public abstract class PuntoVendita {
         this.attivo = attivo;
     }
 
-    public LocalDate getData_Emissione() {
-        return data_Emissione;
-    }
-
-    public void setData_Emissione(LocalDate data_Emissione) {
-        this.data_Emissione = data_Emissione;
-    }
 
     @Override
     public String toString() {
-        return "PuntoDiAcquisto{" +
+        return "PuntoVendita{" +
                 "id=" + id +
+                ", location='" + location + '\'' +
                 ", attivo=" + attivo +
-                ", data_Emissione=" + data_Emissione +
                 '}';
     }
 }
