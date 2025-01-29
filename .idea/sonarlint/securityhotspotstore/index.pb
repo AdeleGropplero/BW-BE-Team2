@@ -43,3 +43,5 @@ _
 /src/main/java/esami/epicode/DAO/VeicoloDAO.java,f\6\f6cd9bfc688bde2bdca7fdf10677823a26bf5a0b
 g
 7src/main/java/esami/epicode/Entity/TitoloDiViaggio.java,a\b\abee9e02058eda108da03ee45eb9deab5ffdcfe9
+b
+2src/main/java/esami/epicode/DAO/ParcoMezziDAO.java,0\6\069ce7365a789d003b5ff3cc2500b2421a90c1f1

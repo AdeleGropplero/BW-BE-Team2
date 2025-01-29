@@ -1,7 +1,10 @@
 package esami.epicode.entities;
 
+import esami.epicode.DAO.ParcoMezziDAO;
 import esami.epicode.DAO.TesseraDAO;
 import esami.epicode.DAO.UtenteDAO;
+import esami.epicode.DAO.VeicoloDAO;
+import esami.epicode.Utilities.Utilities;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,6 +19,7 @@ public class Console {
 Scanner sc = new Scanner(System.in);
 UtenteDAO ud = new UtenteDAO(em);
 TesseraDAO td = new TesseraDAO(em);
+VeicoloDAO vd = new VeicoloDAO(em);
 
 private String text = "Digita 1 per scegliere se comprare biglietto o abbonamento /n" +
         "digita 2 per registrare una tessera /n" +
@@ -42,5 +46,17 @@ private String text = "Digita 1 per scegliere se comprare biglietto o abbonament
         }
 
 
+    }
+
+    public void administrator (ParcoMezziDAO pmd){
+        String choice = " ";
+
+        choice = sc.nextLine();
+
+        switch(choice){
+            case "1":
+                long id = Utilities.getLong("Inserisci l'id del veicolo");
+                pmd.putManutenzione(vd.findById(id));
+        }
     }
 }

@@ -15,6 +15,10 @@ public class VeicoloDAO {
         this.em = em;
     }
 
+    public Veicolo findById(long codiceVeicolo){
+        return em.find(Veicolo.class, codiceVeicolo);
+    }
+
     public void increment(Veicolo t){
         String sql = "UPDATE Tram b SET b.numBigliettiVidimati + 1 WHERE b.id = :id";
 

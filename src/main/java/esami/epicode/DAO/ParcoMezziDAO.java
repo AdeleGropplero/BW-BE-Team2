@@ -9,12 +9,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.time.LocalDate;
 
-public class ParcoMezziDao {
+public class ParcoMezziDAO {
 
     private EntityManager em;
     ParcoMezzi pm = new ParcoMezzi();
 
-    public ParcoMezziDao(EntityManager em){
+    public ParcoMezziDAO(EntityManager em){
         this.em = em;
     }
 
@@ -81,27 +81,6 @@ public class ParcoMezziDao {
 
 
     }
-
-    public void updateIncremento(){
-        String sql = "UPDATE Biglietto b SET b.utilizzabile = false WHERE b.id = :id";
-    }
-
-    public void vidimaBiglietto(Biglietto b){
-        String sql = "UPDATE Biglietto b SET b.utilizzabile = false WHERE b.id = :id";
-
-        em.getTransaction().begin();
-
-        TypedQuery<Periodo> query = em.createQuery(sql, Periodo.class);
-
-        query.setParameter("id", b.getId());
-
-        em.getTransaction().commit();
-
-
-    }
-
-
-
 
 
 
