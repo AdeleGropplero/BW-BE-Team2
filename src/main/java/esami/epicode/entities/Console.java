@@ -1,5 +1,6 @@
 package esami.epicode.entities;
 
+import esami.epicode.DAO.PuntoVenditaDAO;
 import esami.epicode.DAO.TesseraDAO;
 import esami.epicode.DAO.UtenteDAO;
 
@@ -16,12 +17,11 @@ public class Console {
 Scanner sc = new Scanner(System.in);
 UtenteDAO ud = new UtenteDAO(em);
 TesseraDAO td = new TesseraDAO(em);
+PuntoVenditaDAO pd = new PuntoVenditaDAO(em);
 
-private String text = "Digita 1 per scegliere se comprare biglietto o abbonamento /n" +
-        "digita 2 per registrare una tessera /n" +
-        "digita 3 per scegliere la tratta da percorrere /n" +
-        "digita 4 per  /n" +
-        "digita 5 per validare il biglietto o mostrare l'abbonamento";
+private String text = "Digita 1 per passare alla modalità amministratore \n" +
+        "digita 2 se sei un utente \n";
+
 
     public void start (){
         String choice = "";
@@ -30,11 +30,12 @@ private String text = "Digita 1 per scegliere se comprare biglietto o abbonament
         switch(choice){
 
             case "1":
-                ud.createUtente();
+                //Log amministratore
                 break;
 
             case "2":
-                td.createTessera();
+                // Utente
+                pd.operazioniUtente();
                 break;
 
             case "7":
