@@ -1,0 +1,13 @@
+
+
+java:S5993#"9Change the visibility of this constructor to "protected".(½„Èşÿÿÿÿ8ºå”åÊ2J$08472ad6-45d7-4e46-99ec-e439b6110228
+
+java:S5993'"9Change the visibility of this constructor to "protected".(¿Î±üÿÿÿÿ8ºå”åÊ2J$fd5472b0-4713-4c4c-b22c-7391e3bf5509
+d
+java:S1116g"Remove this empty statement.(ôŸìúÿÿÿÿ8Çå”åÊ2J$124ef5ad-14bc-4ac4-bb82-2de3df9f690d
+x
+java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8Ì‰•åÊ2J$3c8f3038-6d3d-4257-b090-bb5b62752e98
+s
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8Í‰•åÊ2J$eca056b6-946f-436f-8d42-7a3b82722687
+s
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8Í‰•åÊ2J$382641ee-a85c-4401-ae07-bc874d91b935
