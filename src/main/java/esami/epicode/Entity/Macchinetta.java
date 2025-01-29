@@ -15,11 +15,20 @@ public class Macchinetta extends PuntoVendita {
     @OneToMany(mappedBy = "macchinetta")
     List<Biglietto> biglietti = new ArrayList<>();
 
-    public Macchinetta(boolean attivo, LocalDate data_Emissione) {
-        super(attivo, data_Emissione);
+    public Macchinetta(String location, boolean attivo) {
+        super(location, attivo);
+       // this.biglietti = biglietti;
     }
 
     public Macchinetta() {
+    }
+
+    public List<Biglietto> getBiglietti() {
+        return biglietti;
+    }
+
+    public void setBiglietti(List<Biglietto> biglietti) {
+        this.biglietti = biglietti;
     }
 
     @Override

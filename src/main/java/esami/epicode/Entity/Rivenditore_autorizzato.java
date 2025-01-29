@@ -17,11 +17,20 @@ public class Rivenditore_autorizzato extends PuntoVendita {
     private List<TitoloDiViaggio> titoliDiViaggio;
 
 
-    public Rivenditore_autorizzato(boolean attivo, LocalDate data_Emissione) {
-        super(attivo, data_Emissione);
+    public Rivenditore_autorizzato(String location, boolean attivo) {
+        super(location, attivo);
+       // this.titoliDiViaggio = titoliDiViaggio;
     }
 
     public Rivenditore_autorizzato() {
+    }
+
+    public List<TitoloDiViaggio> getTitoliDiViaggio() {
+        return titoliDiViaggio;
+    }
+
+    public void setTitoliDiViaggio(List<TitoloDiViaggio> titoliDiViaggio) {
+        this.titoliDiViaggio = titoliDiViaggio;
     }
 
     @Override
