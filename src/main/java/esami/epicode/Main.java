@@ -1,9 +1,13 @@
 package esami.epicode;
 
+import esami.epicode.DAO.ParcoMezziDao;
+import esami.epicode.entities.ParcoMezzi;
+import esami.epicode.entities.Tram;
+import esami.epicode.entities.Veicolo;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.util.Scanner;
 
 
 public class Main 
@@ -11,8 +15,13 @@ public class Main
     public static EntityManager em = emf.createEntityManager();
     public static void main( String[] args ) {
 
+        Veicolo v = new Tram();
+        ParcoMezzi pm = new ParcoMezzi();
 
-        Scanner sc = new Scanner(System.in);
+        ParcoMezziDao pmd = new ParcoMezziDao(em);
+
+        pmd.saveParcoMezzi(pm);
+        pmd.saveVeicolo(v);
 
         em.close();
         emf.close();
