@@ -16,7 +16,6 @@ public abstract class Veicolo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long codiceVeicolo;
 
-//    private int tempoImpiegato;
 
     private boolean inServizio;
 
@@ -25,21 +24,23 @@ public abstract class Veicolo {
 
     private int numBigliettiVidimati;
 
-    @ManyToOne
-    @JoinColumn(name = "tratta_id")
-    private Tratta tratta;
+    @ManyToMany
+    @JoinTable(name = "veicolo_tratta",
+            joinColumns = @JoinColumn(name = "veicolo_id"),
+            inverseJoinColumns = @JoinColumn(name = "tratta_id"))
+    private List<Tratta> tratte;
 
     @ManyToOne
     @JoinColumn(name = "parco_mezzi_id")
     private ParcoMezzi parcoMezzi;
 
-    public  Veicolo(){
+    public Veicolo() {
 
     }
 
-    public Veicolo(boolean inServizio, Tratta tratta) {
+    public Veicolo(boolean inServizio, List<Tratta> tratte) {
         this.inServizio = inServizio;
-        this.tratta = tratta;
+        this.tratte = tratte;
         this.numBigliettiVidimati = 0;
 
     }
@@ -77,14 +78,13 @@ public abstract class Veicolo {
         this.periodi = periodi;
     }
 
-    public Tratta getTratta() {
-        return tratta;
+    public List<Tratta> getTratta() {
+        return this.tratte;
     }
 
-    public void setTratta(Tratta tratta) {
-        this.tratta = tratta;
+    public void setTratta(List<Tratta> tratte) {
+        this.tratte = tratte;
     }
-
 
 
     @Override
@@ -94,17 +94,19 @@ public abstract class Veicolo {
                 ", inServizio=" + inServizio +
                 ", periodi=" + periodi +
                 ", numBigliettiVidimati=" + numBigliettiVidimati +
-                ", tratta=" + tratta;
+                ", tratte=" + tratte;
     }
 
     public abstract Biglietto obliteraBiglietto(Biglietto b);
 
-    public void setInServizio(){
+    public void setInServizio() {
 
-        if (inServizio){
+        if (inServizio) {
             setInServizio(false);
         }
-    };
+    }
+
+    ;
 
 
 }

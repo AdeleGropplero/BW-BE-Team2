@@ -1,6 +1,7 @@
 package esami.epicode.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,17 +15,18 @@ public class Tratta {
     private String partenza;
     private String capolinea;
     private int tempoPrevisto;
-    private int tempoPrevistoAutobus;
-    private int tempoPrevistoTram;
+    private int tempoEffettivo;
 
 
-    @OneToMany(mappedBy = "tratta", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "tratta", cascade = CascadeType.ALL)
     private List<Veicolo> veicoli = new ArrayList<>();
 
-    public Tratta(String partenza, String capolinea, int tempoPrevisto) {
+    public Tratta(String partenza, String capolinea, int tempoPrevisto, int tempoEffettivo) {
         this.partenza = partenza;
         this.capolinea = capolinea;
         this.tempoPrevisto = tempoPrevisto;
+        this.tempoEffettivo = tempoEffettivo;
+
     }
 
     public Tratta() {
@@ -62,21 +64,15 @@ public class Tratta {
         this.tempoPrevisto = tempoPrevisto;
     }
 
-    public int getTempoPrevistoAutobus() {
-        return tempoPrevistoAutobus;
+    public int getTempoEffettivo() {
+        return tempoEffettivo;
     }
 
-    public void setTempoPrevistoAutobus(int tempoPrevistoAutobus) {
-        this.tempoPrevistoAutobus = tempoPrevistoAutobus;
+    public void setTempoEffettivo(int tempoEffettivo) {
+        this.tempoEffettivo = tempoEffettivo;
     }
 
-    public int getTempoPrevistoTram() {
-        return tempoPrevistoTram;
-    }
 
-    public void setTempoPrevistoTram(int tempoPrevistoTram) {
-        this.tempoPrevistoTram = tempoPrevistoTram;
-    }
 
     @Override
     public String toString() {
@@ -85,6 +81,8 @@ public class Tratta {
                 ", partenza='" + partenza + '\'' +
                 ", capolinea='" + capolinea + '\'' +
                 ", tempoPrevisto=" + tempoPrevisto +
+                ", tempoEffettivo=" + tempoEffettivo +
+                ", veicoli=" + veicoli +
                 '}';
     }
 }
