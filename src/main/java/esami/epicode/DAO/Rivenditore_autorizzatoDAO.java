@@ -69,4 +69,6 @@ public class Rivenditore_autorizzatoDAO {
             throw new NessunTitoloTrovatoException("Non è stato possibile continuare, riprova.");
         }
     }
+
+
 }

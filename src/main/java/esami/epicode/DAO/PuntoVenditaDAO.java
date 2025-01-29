@@ -73,7 +73,7 @@ public class PuntoVenditaDAO {
                 System.out.println("Seleziona -1- per acquistare un biglietto");
                 System.out.println("Seleziona -2- per acquistare un abbonamento");
                 System.out.println("Seleziona -3- per creare una nuova tessera");
-                //creare registrazione utente
+
                 String titoloDiViaggio = Utilities.sc.nextLine();
 
                 switch (titoloDiViaggio) {
@@ -85,8 +85,8 @@ public class PuntoVenditaDAO {
                         abbonamentoDAO.acquistoAbbonamento(rivenditore);
                         break;
                     case  "3":
+                        //creare registrazione utente 🟥
                         break;
-                    //aggiungere case 3
                     default:
                         System.out.println("Per favore inserisci un valore valido");
 
