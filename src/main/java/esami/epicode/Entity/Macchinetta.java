@@ -6,14 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "macchinette")
+
 public class Macchinetta extends PuntoVendita {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToMany(mappedBy = "macchinetta")
-    List<Biglietto> biglietti = new ArrayList<>();
 
     public Macchinetta(String location, boolean attivo) {
         super(location, attivo);
@@ -23,13 +21,13 @@ public class Macchinetta extends PuntoVendita {
     public Macchinetta() {
     }
 
-    public List<Biglietto> getBiglietti() {
+/*    public List<Biglietto> getBiglietti() {
         return biglietti;
     }
 
     public void setBiglietti(List<Biglietto> biglietti) {
         this.biglietti = biglietti;
-    }
+    }*/
 
     @Override
     public long getId() {

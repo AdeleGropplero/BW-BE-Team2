@@ -13,9 +13,11 @@ public class VeicoloDAO {
     private EntityManager em;
 
     Veicolo v1 = new Autobus(true ); // capire meglio domani // 🟥 da sistemare
-    Veicolo v2 = new Autobus();
-    Veicolo v3 = new Tram();
-    Veicolo v4 = new Tram();
+    Veicolo v2 = new Autobus(true);
+    Veicolo v5 = new Autobus(false);
+    Veicolo v3 = new Tram(true);
+    Veicolo v4 = new Tram(true);
+    Veicolo v6 = new Tram(false);
 
     public VeicoloDAO(EntityManager em) {
         this.em = em;
@@ -37,11 +39,13 @@ public class VeicoloDAO {
         em.getTransaction().commit();
     }
 
-    public void istanziaMacchinette() {
+    public void istanziaVeicoli() {
         save(v1);
         save(v2);
         save(v3);
         save(v4);
+        save(v5);
+        save(v6);
     }
 
     public void increment(Veicolo t) {

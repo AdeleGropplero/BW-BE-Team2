@@ -15,11 +15,14 @@ public abstract class TitoloDiViaggio {
     @JoinColumn(name = "puntoVendita_id")
     private PuntoVendita puntoVendita;
 
-    public TitoloDiViaggio(LocalDate dataAcquisto, PuntoVendita puntoVendita) {
-        this.dataAcquisto = dataAcquisto;
-        this.puntoVendita = puntoVendita;
+
+
+    public TitoloDiViaggio( PuntoVendita puntoVendita) {
+        this.dataAcquisto = LocalDate.now();
+        this.puntoVendita = puntoVendita;;
+
     }
-//
+
     public TitoloDiViaggio() {
     }
 
