@@ -22,6 +22,7 @@ public class Viaggio {
 
     public Viaggio() {
     }
+    //
 
     public Viaggio(Veicolo veicolo, Tratta tratta) {
         this.veicolo = veicolo;
