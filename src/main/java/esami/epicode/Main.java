@@ -1,9 +1,7 @@
 package esami.epicode;
 
 import esami.epicode.DAO.*;
-import esami.epicode.entities.ParcoMezzi;
-import esami.epicode.entities.Tram;
-import esami.epicode.entities.Veicolo;
+import esami.epicode.entities.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,10 +14,10 @@ public class Main
 {     public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("TrasportoPubblico_Team2");
     public static EntityManager em = emf.createEntityManager();
     public static void main( String[] args ) {
-
+    Console console = new Console();
 
         Scanner sc = new Scanner(System.in);
-
+        VeicoloDAO veicoloDAO = new VeicoloDAO(em);
 /*
         MacchinettaDAO macchinettaDAO = new MacchinettaDAO(em);
         macchinettaDAO.istanziaMacchinette(); //create quattro macchinette.
@@ -34,7 +32,7 @@ public class Main
         tesseraUtente.istanziaTessereUtente(); //create 6 tessere
 
 
-        VeicoloDAO veicoloDAO = new VeicoloDAO(em);
+
         veicoloDAO.istanziaVeicoli();
 
         ViaggioDAO viaggioDAO = new ViaggioDAO(em);
@@ -45,13 +43,19 @@ public class Main
 */
 
 
+
         Veicolo v = new Tram();
         ParcoMezzi pm = new ParcoMezzi();
 
-        ParcoMezziDao pmd = new ParcoMezziDao(em);
+//        Periodo periodo1 = new Periodo(veicoloDAO.getByID(1), LocalDate.of(2024,2,1), LocalDate.of(2024,3,1));
+//        PeriodoDAO periodoDao = new PeriodoDAO(em);
+//        periodoDao.save(periodo1);
+//        ParcoMezziDao pmd = new ParcoMezziDao(em);
 
-        pmd.saveParcoMezzi(pm);
-        pmd.saveVeicolo(v);
+        console.start();
+
+//        pmd.saveParcoMezzi(pm);
+//        pmd.saveVeicolo(v);
 
 
 

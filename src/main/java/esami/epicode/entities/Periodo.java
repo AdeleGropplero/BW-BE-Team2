@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@NamedQuery(name = "getPeriodoManutenzione", query = "SELECT Periodo p FROM Periodo WHERE p.veicolo_codVeicolo = :codice_veicolo")
+@NamedQuery(name = "getPeriodoManutenzione", query = "SELECT p FROM Periodo p WHERE p.veicolo.codiceVeicolo = :codice_veicolo")
 public class Periodo {
 
     @Id
@@ -13,12 +13,13 @@ public class Periodo {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "veicolo_codVeicolo")
+    @JoinColumn(name = "codiceVeicolo")
     private Veicolo veicolo;
     private LocalDate dataInizio;
     private LocalDate dataFine;
 
-    public Periodo(LocalDate dataFine, LocalDate dataInizio) {
+    public Periodo(Veicolo v, LocalDate dataFine, LocalDate dataInizio) {
+        this.veicolo = v;
         this.dataFine = dataFine;
         this.dataInizio = dataInizio;
     }

@@ -18,7 +18,7 @@ public class AmministratoreDAO {
     Scanner sc = new Scanner(System.in);
     ParcoMezzi pm = new ParcoMezzi();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    public static String codice_veicolo;
+    public static long codice_veicolo;
 
     public AmministratoreDAO(EntityManager em) {
         this.em = em;
@@ -31,7 +31,7 @@ public class AmministratoreDAO {
     public int calcolaMediaTempoPercorrenzaTratta() {
         tuttiIVeicoli();
         System.out.println("Seleziona il codice del veicolo che vuoi controllare:");
-        codice_veicolo = sc.nextLine();
+        codice_veicolo = sc.nextLong();
         Query q = em.createNamedQuery("getVeicolo");
         q.setParameter("codice_veicolo", codice_veicolo);
         Veicolo v = (Veicolo) q.getSingleResult();
@@ -47,7 +47,7 @@ public class AmministratoreDAO {
         //long numero = v.getViaggi().stream().filter(viaggio -> viaggio.getVeicolo().equals(v) && viaggio.getTratta().equals(t)).count();
         tuttiIVeicoli();
         System.out.println("Seleziona il codice del veicolo che vuoi controllare:");
-        codice_veicolo = sc.nextLine();
+        codice_veicolo = sc.nextLong();
         Query q = em.createNamedQuery("getVeicolo");
         q.setParameter("codice_veicolo", codice_veicolo);
         Veicolo v = (Veicolo) q.getSingleResult();
@@ -87,20 +87,20 @@ public class AmministratoreDAO {
     }
 
     public void tuttiIVeicoli() {
-        Query q = em.createQuery("SELECT Veicolo v FROM Veicolo");
+        Query q = em.createQuery("SELECT v FROM Veicolo v");
         List<Veicolo> veicoli = (List<Veicolo>) q.getResultList();
         veicoli.forEach(System.out::println);
     }
 
 
-    public List<Periodo> getPeriodiManutenzione() {
+    public void getPeriodiManutenzione() {
         tuttiIVeicoli();
         System.out.println("Seleziona il codice del veicolo che vuoi controllare:");
-        codice_veicolo = sc.nextLine();
+        codice_veicolo = sc.nextLong();
 
-        Query q = em.createNamedQuery("getPeriodiManutenzione");
+        Query q = em.createNamedQuery("getPeriodoManutenzione");
         q.setParameter("codice_veicolo", codice_veicolo);
-        return q.getResultList();
+        System.out.println("I veicoli in manutenzione sono: " + q.getResultList());
     }
 
 
@@ -121,19 +121,19 @@ public class AmministratoreDAO {
         em.getTransaction().commit();
     }
 
-    public int totaleBigliettiVidimatiPerVeicolo() {
+    public void totaleBigliettiVidimatiPerVeicolo() {
         tuttiIVeicoli();
         System.out.println("Seleziona il codice del veicolo che vuoi controllare:");
 
-        codice_veicolo = sc.nextLine();
+        codice_veicolo = sc.nextLong();
 
         Query q = em.createNamedQuery("getVeicolo");
         q.setParameter("codice_veicolo", codice_veicolo);
         Veicolo v = (Veicolo) q.getSingleResult();
-        return v.getNumBigliettiVidimati();
+        System.out.println("Il numero di biglietti vidimati è: " + v.getNumBigliettiVidimati());
     }
 
-    public int totaleBigliettiVidimatiPerPeriodo() {
+    public void totaleBigliettiVidimatiPerPeriodo() {
 
         System.out.println("Scrivi la data di inizio del controllo nel formato GG/MM/AAAA");
 
@@ -147,7 +147,7 @@ public class AmministratoreDAO {
 
         LocalDate dataForm2 = LocalDate.parse(data2, formatter);
 
-        String sql = "SELECT Biglietto b FROM Biglietto WHERE b.utilizzabile = false AND b.utilizzabile BETWEEN dataForm AND dataForm2";
+        String sql = "SELECT b FROM Biglietto b WHERE b.utilizzabile = null AND b.utilizzabile BETWEEN dataForm AND dataForm2";
 
         em.getTransaction().begin();
 
@@ -160,7 +160,7 @@ public class AmministratoreDAO {
 
         em.getTransaction().commit();
 
-        return biglietti.size();
+        System.out.println(biglietti.size());
     }
 
     public void gestioneAmministratore() {

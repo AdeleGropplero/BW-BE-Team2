@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipologia", discriminatorType = DiscriminatorType.STRING)
-@NamedQuery(name = "getVeicolo", query = "SELECT Veicolo v FROM Veicolo WHERE v.codiceVeicolo = :codice_veicolo")
+@NamedQuery(name = "getVeicolo", query = "SELECT v FROM Veicolo v WHERE v.codiceVeicolo = :codice_veicolo")
 public abstract class Veicolo {
 
     @Id

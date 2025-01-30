@@ -27,6 +27,7 @@ private String text = "Digita 1 per passare alla modalità amministratore \n" +
 
 
     public void start (){
+        System.out.println(text);
         String choice = "";
         choice = sc.nextLine();
 
