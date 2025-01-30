@@ -3,6 +3,7 @@ package esami.epicode.entities;
 import esami.epicode.Entity.Biglietto;
 
 import javax.persistence.Entity;
+import java.time.LocalDate;
 
 
 @Entity
@@ -38,9 +39,9 @@ public class Tram extends Veicolo {
     @Override
     public Biglietto obliteraBiglietto(Biglietto b) {
         this.setNumBigliettiVidimati(this.getNumBigliettiVidimati()+1);
-        b.setUtilizzabile(false);
+        b.setUtilizzabile(LocalDate.now());
         return b;
-    } // 🟥 da sistemare
+    }
 
 
 
