@@ -22,13 +22,11 @@ public abstract class Veicolo {
     @OneToMany(mappedBy = "veicolo", cascade = CascadeType.ALL)
     private List<Periodo> periodi;
 
+    @OneToMany (mappedBy = "veicolo", cascade = CascadeType.ALL)
+    private List<Viaggio> viaggi = new ArrayList<>();
+
     private int numBigliettiVidimati;
 
-    @ManyToMany
-    @JoinTable(name = "veicolo_tratta",
-            joinColumns = @JoinColumn(name = "veicolo_id"),
-            inverseJoinColumns = @JoinColumn(name = "tratta_id"))
-    private List<Tratta> tratte;
 
     @ManyToOne
     @JoinColumn(name = "parco_mezzi_id")
@@ -40,11 +38,27 @@ public abstract class Veicolo {
 
     public Veicolo(boolean inServizio) {
         this.inServizio = inServizio;
-        this.tratte = new ArrayList<>();
         this.numBigliettiVidimati = 0;
 
     }
 
+
+
+    public List<Viaggio> getViaggi() {
+        return viaggi;
+    }
+
+    public void setViaggi(List<Viaggio> viaggi) {
+        this.viaggi = viaggi;
+    }
+
+    public ParcoMezzi getParcoMezzi() {
+        return parcoMezzi;
+    }
+
+    public void setParcoMezzi(ParcoMezzi parcoMezzi) {
+        this.parcoMezzi = parcoMezzi;
+    }
 
     public long getCodiceVeicolo() {
         return codiceVeicolo;
@@ -78,23 +92,17 @@ public abstract class Veicolo {
         this.periodi = periodi;
     }
 
-    public List<Tratta> getTratta() {
-        return this.tratte;
-    }
-
-    public void setTratta(List<Tratta> tratte) {
-        this.tratte = tratte;
-    }
-
 
     @Override
     public String toString() {
         return "Veicolo{" +
-                ", codiceVeicolo=" + codiceVeicolo +
+                "codiceVeicolo=" + codiceVeicolo +
                 ", inServizio=" + inServizio +
                 ", periodi=" + periodi +
+                ", viaggi=" + viaggi.size() +
                 ", numBigliettiVidimati=" + numBigliettiVidimati +
-                ", tratte=" + tratte;
+                ", parcoMezzi=" + parcoMezzi +
+                '}';
     }
 
     public abstract Biglietto obliteraBiglietto(Biglietto b);

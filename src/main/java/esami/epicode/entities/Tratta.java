@@ -15,17 +15,16 @@ public class Tratta {
     private String partenza;
     private String capolinea;
     private int tempoPrevisto;
-    private int tempoEffettivo;
 
 
-    @ManyToMany(mappedBy = "tratta", cascade = CascadeType.ALL)
-    private List<Veicolo> veicoli = new ArrayList<>();
+
+    @OneToMany (mappedBy = "tratta", cascade = CascadeType.ALL)
+    private List<Viaggio> viaggi = new ArrayList<>();
 
     public Tratta(String partenza, String capolinea, int tempoPrevisto) {
         this.partenza = partenza;
         this.capolinea = capolinea;
         this.tempoPrevisto = tempoPrevisto;
-        this.tempoEffettivo = calcTempoEffettivo();
 
     }
 
@@ -37,6 +36,13 @@ public class Tratta {
         return tempoEffettivo;
     }
 
+    public List<Viaggio> getViaggi() {
+        return viaggi;
+    }
+
+    public void setViaggi(List<Viaggio> viaggi) {
+        this.viaggi = viaggi;
+    }
 
     public long getId() {
         return id;
@@ -70,14 +76,6 @@ public class Tratta {
         this.tempoPrevisto = tempoPrevisto;
     }
 
-    public int getTempoEffettivo() {
-        return tempoEffettivo;
-    }
-
-    public void setTempoEffettivo(int tempoEffettivo) {
-        this.tempoEffettivo = tempoEffettivo;
-    }
-
 
     @Override
     public String toString() {
@@ -86,8 +84,7 @@ public class Tratta {
                 ", partenza='" + partenza + '\'' +
                 ", capolinea='" + capolinea + '\'' +
                 ", tempoPrevisto=" + tempoPrevisto +
-                ", tempoEffettivo=" + tempoEffettivo +
-                ", veicoli=" + veicoli +
+                ", viaggi=" + viaggi.size() +
                 '}';
     }
 }

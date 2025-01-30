@@ -27,15 +27,18 @@ public class AmministratoreDAO {
 
     public int calcolaMediaTempoPercorrenzaTratta(Veicolo v) {
         int sommaTempiEffettivi = 0;
-        for (Tratta tratta : v.getTratta()) {
-            sommaTempiEffettivi += tratta.getTempoEffettivo();
+        for (Viaggio viaggio : v.getViaggi()) {
+            sommaTempiEffettivi += viaggio.getTempoEffettivo();
         }
-        return sommaTempiEffettivi / v.getTratta().size();
+        return sommaTempiEffettivi / v.getViaggi().size();
     }
 
-    public void numeroPercorrenzaTratta(Veicolo v) {
-        System.out.println("Il numero di volte che il veicolo " + v + " ha percorso la tratta con partenza a: " + v.getTratta().get(0).getPartenza() +
-                " e capolinea a: " + v.getTratta().get(0).getCapolinea() + " è: " + v.getTratta().size());
+    public void numeroPercorrenzaTratta(Veicolo v, Tratta t, List<Viaggio> viaggi) {
+      long numero = viaggi.stream().filter(viaggio -> viaggio.getVeicolo().equals(v) && viaggio.getTratta().equals(t)).count();
+        System.out.println("Il veicolo " + v.getCodiceVeicolo() + " ha percorso la tratta "+ t.getPartenza() + " - " + t.getCapolinea() + " per " + numero + " volte.");
+
+        /*  System.out.println("Il numero di volte che il veicolo " + v.getCodiceVeicolo() + " ha percorso la tratta con partenza a: " + v.().get(0).getPartenza() +
+                " e capolinea a: " + v.getTratta().get(0).getCapolinea() + " è: " + v.getTratta().size());*/
     }
 
     // METODI PER PERIODO DI MANUTENZIONE MEZZO
