@@ -28,11 +28,12 @@ public class AmministratoreDAO {
         return em.find(Amministratore.class, id);
     }
 
-    public int calcolaMediaTempoPercorrenzaTratta() {
+    public void calcolaMediaTempoPercorrenzaTratta() {
         tuttiIVeicoli();
         System.out.println("Seleziona il codice del veicolo che vuoi controllare:");
         codice_veicolo = sc.nextLong();
-        Query q = em.createNamedQuery("getVeicolo");
+        sc.nextLine();
+        Query q = em.createNamedQuery("getVeicolo", Veicolo.class);
         q.setParameter("codice_veicolo", codice_veicolo);
         Veicolo v = (Veicolo) q.getSingleResult();
 
@@ -40,7 +41,7 @@ public class AmministratoreDAO {
         for (Viaggio viaggio : v.getViaggi()) {
             sommaTempiEffettivi += viaggio.getTempoEffettivo();
         }
-        return sommaTempiEffettivi / v.getViaggi().size();
+        System.out.println("Il tempo medio di viaggio è: " + (sommaTempiEffettivi / v.getViaggi().size()) + " minuti");
     }
 
     public void numeroPercorrenzaTratta() {
@@ -48,7 +49,8 @@ public class AmministratoreDAO {
         tuttiIVeicoli();
         System.out.println("Seleziona il codice del veicolo che vuoi controllare:");
         codice_veicolo = sc.nextLong();
-        Query q = em.createNamedQuery("getVeicolo");
+        sc.nextLine();
+        Query q = em.createNamedQuery("getVeicolo", Veicolo.class);
         q.setParameter("codice_veicolo", codice_veicolo);
         Veicolo v = (Veicolo) q.getSingleResult();
 
@@ -97,8 +99,9 @@ public class AmministratoreDAO {
         tuttiIVeicoli();
         System.out.println("Seleziona il codice del veicolo che vuoi controllare:");
         codice_veicolo = sc.nextLong();
+        sc.nextLine();
 
-        Query q = em.createNamedQuery("getPeriodoManutenzione");
+        Query q = em.createNamedQuery("getPeriodoManutenzione", Veicolo.class);
         q.setParameter("codice_veicolo", codice_veicolo);
         System.out.println("I veicoli in manutenzione sono: " + q.getResultList());
     }
@@ -126,6 +129,7 @@ public class AmministratoreDAO {
         System.out.println("Seleziona il codice del veicolo che vuoi controllare:");
 
         codice_veicolo = sc.nextLong();
+        sc.nextLine();
 
         Query q = em.createNamedQuery("getVeicolo");
         q.setParameter("codice_veicolo", codice_veicolo);

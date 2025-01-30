@@ -44,8 +44,8 @@ public class Main
 
 
 
-        Veicolo v = new Tram();
-        ParcoMezzi pm = new ParcoMezzi();
+//        Veicolo v = new Tram();
+//        ParcoMezzi pm = new ParcoMezzi();
 
 //        Periodo periodo1 = new Periodo(veicoloDAO.getByID(1), LocalDate.of(2024,2,1), LocalDate.of(2024,3,1));
 //        PeriodoDAO periodoDao = new PeriodoDAO(em);
