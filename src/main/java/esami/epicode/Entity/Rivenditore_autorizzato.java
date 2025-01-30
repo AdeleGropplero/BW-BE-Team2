@@ -6,15 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "rivenditori_autorizzati")
 public class Rivenditore_autorizzato extends PuntoVendita {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToMany(mappedBy = "puntoVendita")
+/*    @OneToMany(mappedBy = "puntoVendita")
     @OrderBy("id ASC")
-    private List<TitoloDiViaggio> titoliDiViaggio;
+    private List<TitoloDiViaggio> titoliDiViaggio;*/
 
 
     public Rivenditore_autorizzato(String location, boolean attivo) {

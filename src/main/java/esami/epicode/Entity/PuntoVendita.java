@@ -2,6 +2,9 @@ package esami.epicode.Entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "punti_vendita")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -13,6 +16,8 @@ public abstract class PuntoVendita {
     private String location;
     private boolean attivo;
 
+    @OneToMany(mappedBy = "puntoVendita")
+    List<TitoloDiViaggio> titoliDiViaggio = new ArrayList<>();
 
     public PuntoVendita(String location, boolean attivo) {
         this.location = location;

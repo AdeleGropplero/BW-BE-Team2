@@ -1,9 +1,6 @@
 package esami.epicode;
 
-import esami.epicode.DAO.MacchinettaDAO;
-import esami.epicode.DAO.ParcoMezziDao;
-import esami.epicode.DAO.Rivenditore_autorizzatoDAO;
-import esami.epicode.DAO.TrattaDAO;
+import esami.epicode.DAO.*;
 import esami.epicode.entities.ParcoMezzi;
 import esami.epicode.entities.Tram;
 import esami.epicode.entities.Veicolo;
@@ -11,6 +8,7 @@ import esami.epicode.entities.Veicolo;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 
@@ -22,6 +20,7 @@ public class Main
 
         Scanner sc = new Scanner(System.in);
 
+/*
         MacchinettaDAO macchinettaDAO = new MacchinettaDAO(em);
         macchinettaDAO.istanziaMacchinette(); //create quattro macchinette.
 
@@ -30,6 +29,21 @@ public class Main
 
         TrattaDAO trattaDAO = new TrattaDAO(em);
         trattaDAO.istanziaTratta(); //create quattro tratte.
+
+        TesseraDAO tesseraUtente = new TesseraDAO(em);
+        tesseraUtente.istanziaTessereUtente(); //create 6 tessere
+
+
+        VeicoloDAO veicoloDAO = new VeicoloDAO(em);
+        veicoloDAO.istanziaVeicoli();
+
+        ViaggioDAO viaggioDAO = new ViaggioDAO(em);
+        viaggioDAO.istanziaViaggio(); //creati 4 viaggi
+
+        Titolo_di_viaggioDAO titoloDiViaggioDAO = new Titolo_di_viaggioDAO(em);
+        titoloDiViaggioDAO.istanziaTitoloDiViaggio(); //creati 6 titoli di viaggio
+*/
+
 
         Veicolo v = new Tram();
         ParcoMezzi pm = new ParcoMezzi();
@@ -47,3 +61,10 @@ public class Main
         //
     }
 }
+/*
+        TramDAO tramDAO = new TramDAO(em);
+        tramDAO.istanziaTram(); //creati 3 tram
+
+        AutobusDAO autobus = new AutobusDAO(em);
+        autobus.istanziaAutobus(); //creati 3 bus
+*/

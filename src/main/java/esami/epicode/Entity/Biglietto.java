@@ -3,7 +3,6 @@ package esami.epicode.Entity;
 import javax.persistence.*;
 import java.time.LocalDate;
 @Entity
-@Table (name = "biglietti")
 public class Biglietto extends TitoloDiViaggio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,15 +10,20 @@ public class Biglietto extends TitoloDiViaggio {
     private LocalDate utilizzabile;
 
     @ManyToOne
-    @JoinColumn(name = "rivenditore_autorizzato_id")
-    private Rivenditore_autorizzato rivenditore_autorizzato;
+    @JoinColumn(name = "puntoVenditaId")
+    private PuntoVendita puntoVendita;
 
-    @ManyToOne
+  /*  @ManyToOne
     @JoinColumn(name = "macchinetta_id")
-    private Macchinetta macchinetta;
+    private Macchinetta macchinetta;*/
 
-    public Biglietto(LocalDate data_acquisto, PuntoVendita punto_di_acquisto) {
-        super(data_acquisto, punto_di_acquisto);
+/*    public Biglietto( long puntoVenditaId) {
+        super(puntoVenditaId);
+        this.utilizzabile = null;
+    }*/
+
+    public Biglietto(PuntoVendita puntoVendita) {
+        super(puntoVendita);
         this.utilizzabile = null;
     }
 
@@ -38,6 +42,7 @@ public class Biglietto extends TitoloDiViaggio {
         return utilizzabile;
     }
 
+/*
     public Rivenditore_autorizzato getRivenditore_autorizzato() {
         return rivenditore_autorizzato;
     }
@@ -45,6 +50,7 @@ public class Biglietto extends TitoloDiViaggio {
     public Macchinetta getMacchinetta() {
         return macchinetta;
     }
+*/
 
     @Override
     public long getId() {

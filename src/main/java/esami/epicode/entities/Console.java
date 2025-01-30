@@ -2,7 +2,7 @@ package esami.epicode.entities;
 
 import esami.epicode.DAO.PuntoVenditaDAO;
 import esami.epicode.DAO.TesseraDAO;
-import esami.epicode.DAO.UtenteDAO;
+//import esami.epicode.DAO.UtenteDAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,7 +15,7 @@ public class Console {
     public static EntityManager em = emf.createEntityManager();
 
 Scanner sc = new Scanner(System.in);
-UtenteDAO ud = new UtenteDAO(em);
+//UtenteDAO ud = new UtenteDAO(em);
 TesseraDAO td = new TesseraDAO(em);
 PuntoVenditaDAO pd = new PuntoVenditaDAO(em);
 

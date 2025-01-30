@@ -6,8 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "abbonamenti")
-public class Abbonamento extends TitoloDiViaggio{
+public class Abbonamento extends TitoloDiViaggio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -15,28 +14,31 @@ public class Abbonamento extends TitoloDiViaggio{
     private Cadenza cadenza;
     @OneToOne
     @JoinColumn(name = "tessera_id")
-    private Tessera tessera;
+    private TesseraUtente tesseraUtente;
     private LocalDate data_di_scadenza;
 
+    /*    @ManyToOne
+        @JoinColumn(name = "rivenditore_autorizzato_id")
+        private Rivenditore_autorizzato rivenditore_autorizzato;*/
     @ManyToOne
-    @JoinColumn(name = "rivenditore_autorizzato_id")
-    private Rivenditore_autorizzato rivenditore_autorizzato;
+    @JoinColumn(name = "puntoVenditaId")
+    private PuntoVendita puntoVendita;
 
     public Abbonamento() {
     }
 
-    public Abbonamento(LocalDate dataAcquisto, PuntoVendita puntoDiAcquisto, Cadenza cadenza, Tessera tessera_id) {
-        super(dataAcquisto, puntoDiAcquisto);
+    public Abbonamento(PuntoVendita puntoVendita , Cadenza cadenza, TesseraUtente tesseraUtente) {
+        super(puntoVendita);
         this.cadenza = cadenza;
         this.data_di_scadenza = gestioneScadenze();
-        this.tessera = tessera_id;
+        this.tesseraUtente = tesseraUtente;
     }
 
-    public LocalDate gestioneScadenze(){
-        if (this.cadenza.equals(Cadenza.SETTIMANALE)){
-           return this.data_di_scadenza = getData_acquisto().plusDays(7);
-        }else {
-           return this.data_di_scadenza = getData_acquisto().plusDays(30);
+    public LocalDate gestioneScadenze() {
+        if (this.cadenza.equals(Cadenza.SETTIMANALE)) {
+            return this.data_di_scadenza = getData_acquisto().plusDays(7);
+        } else {
+            return this.data_di_scadenza = getData_acquisto().plusDays(30);
         }
     }
 
@@ -58,12 +60,12 @@ public class Abbonamento extends TitoloDiViaggio{
         this.cadenza = cadenza;
     }
 
-    public Tessera getN_tessera() {
-        return tessera;
+    public TesseraUtente getN_tessera() {
+        return tesseraUtente;
     }
 
-    public void setN_tessera_id(Tessera tessera_id) {
-        this.tessera = Abbonamento.this.tessera;
+    public void setN_tessera_id(TesseraUtente tessera_Utente_id) {
+        this.tesseraUtente = Abbonamento.this.tesseraUtente;
     }
 
     public LocalDate getData_di_scadenza() {
@@ -79,7 +81,7 @@ public class Abbonamento extends TitoloDiViaggio{
         return "Abbonamento{" +
                 "id=" + id +
                 ", cadenza=" + cadenza +
-                ", tessera=" + tessera +
+                ", tesseraUtente=" + tesseraUtente +
                 ", data_di_scadenza=" + data_di_scadenza +
                 "} " + super.toString();
     }
