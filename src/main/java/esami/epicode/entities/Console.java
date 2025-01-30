@@ -1,5 +1,6 @@
 package esami.epicode.entities;
 
+import esami.epicode.DAO.AmministratoreDAO;
 import esami.epicode.DAO.PuntoVenditaDAO;
 import esami.epicode.DAO.TesseraDAO;
 import esami.epicode.DAO.UtenteDAO;
@@ -18,6 +19,7 @@ Scanner sc = new Scanner(System.in);
 UtenteDAO ud = new UtenteDAO(em);
 TesseraDAO td = new TesseraDAO(em);
 PuntoVenditaDAO pd = new PuntoVenditaDAO(em);
+AmministratoreDAO ad = new AmministratoreDAO(em);
 
 private String text = "Digita 1 per passare alla modalità amministratore \n" +
         "Digita 2 se sei un utente \n" +
@@ -31,7 +33,7 @@ private String text = "Digita 1 per passare alla modalità amministratore \n" +
         switch(choice){
 
             case "1":
-                //Log amministratore
+                ad.gestioneAmministratore();
                 break;
 
             case "2":
@@ -42,10 +44,8 @@ private String text = "Digita 1 per passare alla modalità amministratore \n" +
             case "3":
                 //Tratta
                 System.out.println();
-
                 break;
 
-            case "7":
 
         }
 

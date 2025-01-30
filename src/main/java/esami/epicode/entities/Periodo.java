@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@NamedQuery(name = "getPeriodoManutenzione", query = "SELECT Periodo p FROM Periodo WHERE p.veicolo_codVeicolo = :codice_veicolo")
 public class Periodo {
 
     @Id
