@@ -11,7 +11,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 public class TrattaDAO {
-    private EntityManager em;
+    private final EntityManager em;
 
     VeicoloDAO veicoloDAO = new VeicoloDAO(em);
 

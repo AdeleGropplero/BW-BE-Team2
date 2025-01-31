@@ -37,7 +37,7 @@ public class Autobus extends Veicolo {
     @Override
     public String toString() {
         return "Autobus{" +
-                "id=" +
+                "id=" + getCodiceVeicolo() +
                 '}';
     }
 

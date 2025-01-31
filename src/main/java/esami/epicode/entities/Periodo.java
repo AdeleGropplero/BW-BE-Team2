@@ -15,11 +15,12 @@ public class Periodo {
     @ManyToOne
     @JoinColumn(name = "codiceVeicolo")
     private Veicolo veicolo;
+
     private LocalDate dataInizio;
     private LocalDate dataFine;
 
-    public Periodo(Veicolo v, LocalDate dataFine, LocalDate dataInizio) {
-        this.veicolo = v;
+    public Periodo(Veicolo veicolo, LocalDate dataFine, LocalDate dataInizio) {
+        this.veicolo = veicolo;
         this.dataFine = dataFine;
         this.dataInizio = dataInizio;
     }
@@ -53,14 +54,21 @@ public class Periodo {
         this.dataInizio = dataInizio;
     }
 
+    public Veicolo getVeicolo() {
+        return veicolo;
+    }
+
+    public void setVeicolo(Veicolo veicolo) {
+        this.veicolo = veicolo;
+    }
 
     @Override
     public String toString() {
         return "Periodo{" +
-                "dataFine=" + dataFine +
+                "id=" + id +
+                ", veicolo=" + veicolo +
                 ", dataInizio=" + dataInizio +
+                ", dataFine=" + dataFine +
                 '}';
     }
-
-
 }
