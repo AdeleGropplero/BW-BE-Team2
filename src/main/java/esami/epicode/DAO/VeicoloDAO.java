@@ -13,7 +13,7 @@ public class VeicoloDAO {
     private EntityManager em;
 
     Titolo_di_viaggioDAO biglietto = new Titolo_di_viaggioDAO(em);
-    TrattaDAO tratta = new TrattaDAO(em);
+
 
 
     Veicolo v1 = new Autobus(true); // capire meglio domani // 🟥 da sistemare
@@ -82,9 +82,9 @@ public class VeicoloDAO {
     }
 
     public void ciclo() {
-
+TrattaDAO trattaDAO= new TrattaDAO(Utilities.em);
         boolean loop = true;
-        long idTratta = tratta.scegliTratta();
+        long idTratta = trattaDAO.scegliTratta();
         while (loop) {
             long codiceBiglietto = Utilities.getLong("Inserisci codice biglietto");
             Utilities.sc.nextLine();
