@@ -44,7 +44,7 @@ public class Titolo_di_viaggioDAO {
     }
 
     public TitoloDiViaggio getByID(long id) {
-        return em.find(TitoloDiViaggio.class, id);
+        return Utilities.em.find(TitoloDiViaggio.class, id);
     }
 
     public void delete(TitoloDiViaggio e) {

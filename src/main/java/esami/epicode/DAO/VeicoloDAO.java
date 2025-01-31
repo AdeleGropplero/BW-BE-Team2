@@ -53,33 +53,38 @@ public class VeicoloDAO {
     }
 
     public void increment(Veicolo t) {
-        String sql = "UPDATE Tram b SET b.numBigliettiVidimati + 1 WHERE b.id = :id";
-
-        em.getTransaction().begin();
+        // La query HQL corretta per incrementare numBigliettiVidimati
+        String sql = "UPDATE Tram b SET b.numBigliettiVidimati = b.numBigliettiVidimati + 1 WHERE b.id = :id";
 
         Query query = em.createQuery(sql);
-
         query.setParameter("id", t.getCodiceVeicolo());
 
-        em.getTransaction().commit();
+        // Esegui direttamente l'aggiornamento senza gestire la transazione qui
+        query.executeUpdate();
     }
+
 
     public void vidimaBiglietto(Biglietto b, Veicolo t) {
         if (b.getUtilizzabile() == null) {
-            String sql = "UPDATE Biglietto b SET b.utilizzabile = CURRENT_DATE WHERE b.id = :id";
-
+            // Inizia la transazione qui, solo una volta
             em.getTransaction().begin();
 
+            // La query per aggiornare il biglietto
+            String sql = "UPDATE Biglietto b SET b.utilizzabile = CURRENT_DATE WHERE b.id = :id";
             Query query = em.createQuery(sql);
-
             query.setParameter("id", b.getId());
 
+            // Esegui l'aggiornamento del biglietto
+            query.executeUpdate();
+
+            // Chiamata a increment senza una nuova transazione
             increment(t);
 
+            // Commit della transazione
             em.getTransaction().commit();
         }
-
     }
+
 
     public void ciclo() {
 TrattaDAO trattaDAO= new TrattaDAO(Utilities.em);

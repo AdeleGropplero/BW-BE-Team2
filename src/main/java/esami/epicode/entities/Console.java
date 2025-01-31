@@ -46,7 +46,7 @@ private String text = "Digita 1 per passare alla modalità amministratore \n" +
 
             case "3":
                 //Tratta
-              //  vd.ciclo();
+               vd.ciclo();
                 System.out.println();
                 break;
 
