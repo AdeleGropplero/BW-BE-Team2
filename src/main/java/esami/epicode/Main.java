@@ -33,14 +33,16 @@ public class Main {
 //        tesseraUtente.istanziaTessereUtente(); //create 6 tessere
 //
 //
-         VeicoloDAO veicoloDAO = new VeicoloDAO(em);
-//         veicoloDAO.istanziaVeicoli();
+        VeicoloDAO veicoloDAO = new VeicoloDAO(em);
+        //  veicoloDAO.istanziaVeicoli();
 //
 //        ViaggioDAO viaggioDAO = new ViaggioDAO(em);
 //        viaggioDAO.istanziaViaggio(); //creati 4 viaggi
 //
 //        Titolo_di_viaggioDAO titoloDiViaggioDAO = new Titolo_di_viaggioDAO(em);
 //        titoloDiViaggioDAO.istanziaTitoloDiViaggio(); //creati 6 titoli di viaggio
+
+        console.start();
 
 
 //        Veicolo v = new Tram();
@@ -51,15 +53,17 @@ public class Main {
 //        periodoDao.save(periodo1);
 //        ParcoMezziDao pmd = new ParcoMezziDao(em);
 
-        console.start();
 
 //        pmd.saveParcoMezzi(pm);
 //        pmd.saveVeicolo(v);
 
         AmministratoreDAO amministratoreDao = new AmministratoreDAO(em);
 
-//        amministratoreDao.putManutenzione(veicoloDAO.getByID(1));
-//        amministratoreDao.leftManutenzione(LocalDate.of(2025,2,15), veicoloDAO.getByID(1).getCodiceVeicolo());
+/*
+        amministratoreDao.putManutenzione(veicoloDAO.getByID(17));
+        amministratoreDao.putManutenzione(veicoloDAO.getByID(9));
+        amministratoreDao.putManutenzione(veicoloDAO.getByID(18));
+*/
 
 
         em.close();

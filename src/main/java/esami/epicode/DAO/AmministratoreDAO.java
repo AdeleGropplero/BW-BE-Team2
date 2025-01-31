@@ -94,7 +94,7 @@ public class AmministratoreDAO {
 //    }
 
     public void putManutenzione(Veicolo a) {
-        Periodo p = new Periodo(a, (LocalDate.now()), LocalDate.now().plusDays(10));
+        Periodo p = new Periodo(a, (LocalDate.now()), LocalDate.now().plusDays((long)(Math.random()*20)));
         savePeriodo(p);
         a.getPeriodi().add(p);
     }

@@ -19,10 +19,10 @@ public class Periodo {
     private LocalDate dataInizio;
     private LocalDate dataFine;
 
-    public Periodo(Veicolo veicolo, LocalDate dataFine, LocalDate dataInizio) {
+    public Periodo(Veicolo veicolo, LocalDate dataInizio,LocalDate dataFine) {
         this.veicolo = veicolo;
-        this.dataFine = dataFine;
         this.dataInizio = dataInizio;
+        this.dataFine = dataFine;
     }
 
 
