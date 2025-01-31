@@ -29,9 +29,9 @@ public abstract class Veicolo {
     private int numBigliettiVidimati;
 
 
-    @ManyToOne
-    @JoinColumn(name = "parco_mezzi_id")
-    private ParcoMezzi parcoMezzi;
+//    @ManyToOne
+//    @JoinColumn(name = "parco_mezzi_id")
+//    private ParcoMezzi parcoMezzi;
 
     public Veicolo() {
 
@@ -53,13 +53,13 @@ public abstract class Veicolo {
         this.viaggi = viaggi;
     }
 
-    public ParcoMezzi getParcoMezzi() {
-        return parcoMezzi;
-    }
-
-    public void setParcoMezzi(ParcoMezzi parcoMezzi) {
-        this.parcoMezzi = parcoMezzi;
-    }
+//    public ParcoMezzi getParcoMezzi() {
+//        return parcoMezzi;
+//    }
+//
+//    public void setParcoMezzi(ParcoMezzi parcoMezzi) {
+//        this.parcoMezzi = parcoMezzi;
+//    }
 
     public long getCodiceVeicolo() {
         return codiceVeicolo;
@@ -102,7 +102,7 @@ public abstract class Veicolo {
                 ", periodi=" + periodi +
                 ", viaggi=" + viaggi.size() +
                 ", numBigliettiVidimati=" + numBigliettiVidimati +
-                ", parcoMezzi=" + parcoMezzi +
+//                ", parcoMezzi=" + parcoMezzi +
                 '}';
     }
 

@@ -2,6 +2,8 @@ package esami.epicode.DAO;
 
 import esami.epicode.Entity.Amministratore;
 import esami.epicode.Entity.Biglietto;
+import esami.epicode.Exception.NessunVeicoloTrovato;
+import esami.epicode.Exception.NessunaTrattaException;
 import esami.epicode.Utilities.Utilities;
 import esami.epicode.entities.*;
 
@@ -16,7 +18,7 @@ import java.util.Scanner;
 public class AmministratoreDAO {
     EntityManager em;
     Scanner sc = new Scanner(System.in);
-    ParcoMezzi pm = new ParcoMezzi();
+    //    ParcoMezzi pm = new ParcoMezzi();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public static long codice_veicolo;
 
@@ -37,11 +39,15 @@ public class AmministratoreDAO {
         q.setParameter("codice_veicolo", codice_veicolo);
         Veicolo v = (Veicolo) q.getSingleResult();
 
-        int sommaTempiEffettivi = 0;
-        for (Viaggio viaggio : v.getViaggi()) {
-            sommaTempiEffettivi += viaggio.getTempoEffettivo();
+        if (!v.getViaggi().isEmpty()) {
+            int sommaTempiEffettivi = 0;
+            for (Viaggio viaggio : v.getViaggi()) {
+                sommaTempiEffettivi += viaggio.getTempoEffettivo();
+            }
+            System.out.println("Il tempo medio di viaggio è: " + (sommaTempiEffettivi / v.getViaggi().size()) + " minuti");
+        } else {
+            throw new NessunaTrattaException("Il veicolo selezionato al momento non ha percorso nessuna tratta");
         }
-        System.out.println("Il tempo medio di viaggio è: " + (sommaTempiEffettivi / v.getViaggi().size()) + " minuti");
     }
 
     public void numeroPercorrenzaTratta() {
@@ -50,14 +56,22 @@ public class AmministratoreDAO {
         System.out.println("Seleziona il codice del veicolo che vuoi controllare:");
         codice_veicolo = sc.nextLong();
         sc.nextLine();
+
+
         Query q = em.createNamedQuery("getVeicolo", Veicolo.class);
         q.setParameter("codice_veicolo", codice_veicolo);
-        Veicolo v = (Veicolo) q.getSingleResult();
+        List<Veicolo> veicoli = (List<Veicolo>) q.getResultList();
+        if (!veicoli.isEmpty()) {
+            if (!veicoli.get(0).getViaggi().isEmpty()) {
 
-        System.out.println("Il veicolo " + v.getCodiceVeicolo() + " ha percorso " + v.getViaggi().size() + " volte la tratta " + v.getViaggi().get(0).getTratta().getPartenza() + " - " + v.getViaggi().get(0).getTratta().getCapolinea());
+                System.out.println("Il veicolo " + veicoli.get(0).getCodiceVeicolo() + " ha percorso " + veicoli.get(0).getViaggi().size() + " volte la tratta " + veicoli.get(0).getViaggi().get(0).getTratta().getPartenza() + " - " + veicoli.get(0).getViaggi().get(0).getTratta().getCapolinea());
+            } else {
+                throw new NessunaTrattaException("Il veicolo selezionato al momento non ha percorso nessuna tratta");
+            }
 
-        /*  System.out.println("Il numero di volte che il veicolo " + v.getCodiceVeicolo() + " ha percorso la tratta con partenza a: " + v.().get(0).getPartenza() +
-                " e capolinea a: " + v.getTratta().get(0).getCapolinea() + " è: " + v.getTratta().size());*/
+        } else {
+            throw new NessunVeicoloTrovato("Il codice inserito non corrisponde a nessun veicolo");
+        }
     }
 
     // METODI PER PERIODO DI MANUTENZIONE MEZZO
@@ -68,24 +82,21 @@ public class AmministratoreDAO {
         em.getTransaction().commit();
     }
 
-    public void leftManutenzione(LocalDate dataFine, long codiceVeicolo) {
-        String sql = "UPDATE Periodo p SET p.dataFine = :dataFine WHERE p.veicolo.codiceVeicolo = :codiceVeicolo";
-
-        em.getTransaction().begin();
-
-        TypedQuery<Periodo> query = em.createQuery(sql, Periodo.class);
-
-        query.setParameter("dataFine", dataFine);
-        query.setParameter("codiceVeicolo", codiceVeicolo);
-        em.getTransaction().commit();
-    }
+//    public void leftManutenzione(LocalDate dataFine, long codiceVeicolo) {
+//        String sql = "UPDATE Periodo p SET p.dataFine = :dataFine WHERE p.veicolo.codiceVeicolo = :codiceVeicolo";
+//        em.getTransaction().begin();
+//        Query query = em.createQuery(sql);
+//
+//        query.setParameter("dataFine", dataFine);
+//        query.setParameter("codiceVeicolo", codiceVeicolo);
+//        query.executeUpdate();
+//        em.getTransaction().commit();
+//    }
 
     public void putManutenzione(Veicolo a) {
-        Periodo p = new Periodo();
-        p.setDataInizio(LocalDate.now());
+        Periodo p = new Periodo(a, (LocalDate.now()), LocalDate.now().plusDays(10));
         savePeriodo(p);
         a.getPeriodi().add(p);
-        pm.getPeriodiVeicoli().add(a);
     }
 
     public void tuttiIVeicoli() {
@@ -101,14 +112,20 @@ public class AmministratoreDAO {
         codice_veicolo = sc.nextLong();
         sc.nextLine();
 
-        Query q = em.createNamedQuery("getPeriodoManutenzione", Veicolo.class);
+        Query q = em.createNamedQuery("getPeriodoManutenzione", Periodo.class);
         q.setParameter("codice_veicolo", codice_veicolo);
-        System.out.println("I veicoli in manutenzione sono: " + q.getResultList());
+        List<Veicolo> veicoli = (List<Veicolo>) q.getResultList();
+        if (!veicoli.isEmpty()) {
+            System.out.println("I veicoli in manutenzione sono: " + veicoli);
+        } else {
+            throw new NessunVeicoloTrovato("Il codice inserito non corrisponde a nessun veicolo");
+        }
+
     }
 
 
     public void updateIncremento() {
-        String sql = "UPDATE Biglietto b SET b.utilizzabile = false WHERE b.id = :id";
+        String sql = "UPDATE Biglietto b SET b.utilizzabile = CURRENT_DATE WHERE b.id = :id";
     }
 
 
@@ -117,7 +134,7 @@ public class AmministratoreDAO {
 
         em.getTransaction().begin();
 
-        TypedQuery<Biglietto> query = em.createQuery(sql, Biglietto.class);
+        Query query = em.createQuery(sql);
 
         query.setParameter("id", b.getId());
 
@@ -133,38 +150,57 @@ public class AmministratoreDAO {
 
         Query q = em.createNamedQuery("getVeicolo");
         q.setParameter("codice_veicolo", codice_veicolo);
-        Veicolo v = (Veicolo) q.getSingleResult();
-        System.out.println("Il numero di biglietti vidimati è: " + v.getNumBigliettiVidimati());
+
+        List<Veicolo> veicoli = (List<Veicolo>) q.getResultList();
+        if (!veicoli.isEmpty()) {
+            System.out.println("Il numero di biglietti vidimati è: " + veicoli.get(0).getNumBigliettiVidimati());
+        } else {
+            throw new NessunVeicoloTrovato("Il codice inserito non corrisponde a nessun veicolo");
+        }
     }
+
+    public String giornoInizio;
+    public String meseInizio;
+    public String annoInizio;
+
+    public String giornoFine;
+    public String meseFine;
+    public String annoFine;
 
     public void totaleBigliettiVidimatiPerPeriodo() {
 
-        System.out.println("Scrivi la data di inizio del controllo nel formato GG/MM/AAAA");
+        System.out.println("Scrivi il giorno di inizio del controllo: ");
+        giornoInizio = sc.nextLine();
+        System.out.println("Scrivi il mese di inizio del controllo: ");
+        meseInizio = sc.nextLine();
+        System.out.println("Scrivi l'anno di inizio del controllo: ");
+        annoInizio = sc.nextLine();
 
-        String data = sc.nextLine();
+        LocalDate dataInizio = LocalDate.of(Integer.parseInt(annoInizio), Integer.parseInt(meseInizio), Integer.parseInt(giornoInizio));
 
-        LocalDate dataForm = LocalDate.parse(data, formatter);
+        System.out.println("Scrivi il giorno di fine del controllo: ");
+        giornoFine = sc.nextLine();
+        System.out.println("Scrivi il mese di fine del controllo: ");
+        meseFine = sc.nextLine();
+        System.out.println("Scrivi l'anno di fine del controllo: ");
+        annoFine = sc.nextLine();
 
-        System.out.println("Scrivi la data di fine del controllo nel formato GG/MM/AAAA");
+        LocalDate dataFine = LocalDate.of(Integer.parseInt(annoFine), Integer.parseInt(meseFine), Integer.parseInt(giornoFine));
 
-        String data2 = sc.nextLine();
-
-        LocalDate dataForm2 = LocalDate.parse(data2, formatter);
-
-        String sql = "SELECT b FROM Biglietto b WHERE b.utilizzabile = null AND b.utilizzabile BETWEEN dataForm AND dataForm2";
+        String sql = "SELECT b FROM Biglietto b WHERE b.utilizzabile = null AND b.utilizzabile BETWEEN :dataInizio AND :dataFine";
 
         em.getTransaction().begin();
 
         TypedQuery<Biglietto> query = em.createQuery(sql, Biglietto.class);
 
-        query.setParameter("dataForm", dataForm);
-        query.setParameter("dataForm2", dataForm2);
+        query.setParameter("dataInizio", dataInizio);
+        query.setParameter("dataFine", dataFine);
 
         List<Biglietto> biglietti = query.getResultList();
 
         em.getTransaction().commit();
 
-        System.out.println(biglietti.size());
+        System.out.println("I biglietti vidimati nel periodo selezionato sono: " + biglietti.size());
     }
 
     public void gestioneAmministratore() {
@@ -174,7 +210,7 @@ public class AmministratoreDAO {
         while (x) {
             System.out.println("Seleziona -1- per controllare i periodi di manutenzione di un veicolo");
             System.out.println("Seleziona -2- per controllare il numero di biglietti vidimati su un mezzo");
-            System.out.println("Seleziona -3- per controllare il numero di biglietti vidimati su un mezzo in un determinato periodo di tempo");
+            System.out.println("Seleziona -3- per controllare il numero di biglietti vidimati in un determinato periodo di tempo");
             System.out.println("Seleziona -4- per controllare il numero di volte che un mezzo percorre una tratta");
             System.out.println("Seleziona -5- per controllare il tempo medio effettivo di percorrenza di una tratta da parte di un mezzo");
 
@@ -191,16 +227,30 @@ public class AmministratoreDAO {
                     totaleBigliettiVidimatiPerPeriodo();
                     break;
                 case "4":
-                    numeroPercorrenzaTratta();
+                    try {
+                        try {
+                            numeroPercorrenzaTratta();
+                        } catch (NessunaTrattaException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    } catch (NessunVeicoloTrovato e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case "5":
-                    calcolaMediaTempoPercorrenzaTratta();
+                    try {
+                        calcolaMediaTempoPercorrenzaTratta();
+                        ;
+                    } catch (NessunaTrattaException e) {
+                        System.out.println(e.getMessage());
+                    }
+
                     break;
                 default:
                     System.out.println("Per favore inserici un valore valido");
             }
 
-            while(y) {
+            while (y) {
                 System.out.println("Vuoi continuare i controlli? y/n");
                 sceltaUtente = Utilities.sc.nextLine();
                 if (sceltaUtente.equals("n")) {

@@ -1,4 +1,4 @@
-package esami.epicode.entities;
+/*package esami.epicode.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -85,3 +85,4 @@ public class ParcoMezzi {
         return periodi;
     }
 }
+*/
