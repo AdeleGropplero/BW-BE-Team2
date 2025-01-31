@@ -1,10 +1,10 @@
 package esami.epicode.entities;
 
-import esami.epicode.DAO.ParcoMezziDAO;
+import esami.epicode.DAO.AmministratoreDAO;
+import esami.epicode.DAO.PuntoVenditaDAO;
 import esami.epicode.DAO.TesseraDAO;
-import esami.epicode.DAO.UtenteDAO;
 import esami.epicode.DAO.VeicoloDAO;
-import esami.epicode.Utilities.Utilities;
+//import esami.epicode.DAO.UtenteDAO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,46 +17,42 @@ public class Console {
     public static EntityManager em = emf.createEntityManager();
 
 Scanner sc = new Scanner(System.in);
-UtenteDAO ud = new UtenteDAO(em);
+//UtenteDAO ud = new UtenteDAO(em);
 TesseraDAO td = new TesseraDAO(em);
+PuntoVenditaDAO pd = new PuntoVenditaDAO(em);
+AmministratoreDAO ad = new AmministratoreDAO(em);
 VeicoloDAO vd = new VeicoloDAO(em);
 
-private String text = "Digita 1 per scegliere se comprare biglietto o abbonamento /n" +
-        "digita 2 per registrare una tessera /n" +
-        "digita 3 per scegliere la tratta da percorrere /n" +
-        "digita 4 per  /n" +
-        "digita 5 per validare il biglietto o mostrare l'abbonamento";
+private String text = "Digita 1 per passare alla modalità amministratore \n" +
+        "Digita 2 se sei un utente \n" +
+        "Digita 3 per Viaggiare";
+
 
     public void start (){
+        System.out.println(text);
         String choice = "";
         choice = sc.nextLine();
 
         switch(choice){
 
             case "1":
-                ud.createUtente();
+                ad.gestioneAmministratore();
                 break;
 
             case "2":
-                td.createTessera();
+                // Utente
+                pd.operazioniUtente();
                 break;
 
-            case "7":
+            case "3":
+                //Tratta
+              //  vd.ciclo();
+                System.out.println();
+                break;
+
 
         }
 
 
-    }
-
-    public void administrator (ParcoMezziDAO pmd){
-        String choice = " ";
-
-        choice = sc.nextLine();
-
-        switch(choice){
-            case "1":
-                long id = Utilities.getLong("Inserisci l'id del veicolo");
-                pmd.putManutenzione(vd.findById(id));
-        }
     }
 }

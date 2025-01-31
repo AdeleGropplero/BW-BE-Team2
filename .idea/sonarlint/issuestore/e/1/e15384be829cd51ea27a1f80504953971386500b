@@ -1,7 +1,0 @@
-
-‘	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í´¬ÐýÿÿÿÿJ$9cc77a93-5590-4ed6-8a2f-b4868a098fe0
-Œ	java:S1176"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ËþŠ€J$072296d8-ab30-4061-8b67-c1c2b673d67e
-š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ó‚†×ýÿÿÿÿJ$7f4ee230-91c4-44d5-bf7a-3c589b552633
-š	java:S116"ZRename this field "data_di_nascita" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ò¯ÌŸøÿÿÿÿJ$1b7b16f2-aa99-4a60-9432-9db18e59c76c
-Ž	java:S1002"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(çï¶ úÿÿÿÿJ$dc954b62-b5da-4712-9fc3-13d8634405ee
-‰	java:S1006"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ËþŠ€J$ef709775-7c0b-40b6-8448-feee72e4de3c
