@@ -66,12 +66,14 @@ public class AbbonamentoDAO {
                         Cadenza cadenzaSettimanale = Cadenza.SETTIMANALE;
                         Abbonamento a = new Abbonamento(rivenditore, cadenzaSettimanale, tesseraUtente);
                         save(a);
+                        System.out.println("id: "+ a.getId());
                         break;
                     case "2":
                         System.out.println("Hai scelto un abbonamento MENSILE!");
                         Cadenza cadenzaMensile = Cadenza.MENSILE;
                         Abbonamento b = new Abbonamento(rivenditore, cadenzaMensile, tesseraUtente);
                         save(b);
+                        System.out.println("id: "+ b.getId());
                         break;
                     default:
                         System.out.println("Per favore inserisci un valore valido");

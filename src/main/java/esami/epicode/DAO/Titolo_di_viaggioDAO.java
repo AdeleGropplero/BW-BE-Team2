@@ -57,6 +57,7 @@ public class Titolo_di_viaggioDAO {
         TitoloDiViaggio t = new Biglietto(p);
         save(t);
         System.out.println("Biglietto acquistato correttamente");
+        System.out.println("id: " + t.getId());
     }
 }
 

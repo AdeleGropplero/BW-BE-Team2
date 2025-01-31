@@ -187,7 +187,7 @@ public class AmministratoreDAO {
 
         LocalDate dataFine = LocalDate.of(Integer.parseInt(annoFine), Integer.parseInt(meseFine), Integer.parseInt(giornoFine));
 
-        String sql = "SELECT b FROM Biglietto b WHERE b.utilizzabile = null AND b.utilizzabile BETWEEN :dataInizio AND :dataFine";
+        String sql = "SELECT b FROM Biglietto b WHERE b.utilizzabile BETWEEN :dataInizio AND :dataFine";
 
         em.getTransaction().begin();
 

@@ -53,7 +53,7 @@ public class TrattaDAO {
         return q.getResultList();
     }
 
-    public long scegliTratta() {
+    public Long scegliTratta() {
         System.out.println("Dove vuoi andare?");
         List<Tratta> tratte = findAll();
 
@@ -61,12 +61,17 @@ public class TrattaDAO {
         for (int i = 0; i < tratte.size(); i++) {
             System.out.println("Premi " + (i + 1) + " per " + tratte.get(i).getPartenza() + " - " + tratte.get(i).getCapolinea());
         }
+        System.out.println("Oppure digita 0 per uscire");
 
         int scelta = Utilities.sc.nextInt();
         Utilities.sc.nextLine();
 
         // Verifica che la scelta sia valida
-        if (scelta < 1 || scelta > tratte.size()) {
+        if (scelta == 0) {
+            System.out.println("Chiudo...");
+            Utilities.sc.close();
+            return null;
+        }  else if (scelta < 1 || scelta > tratte.size()) {
             System.out.println("Scelta non valida.");
             return scegliTratta(); // Riprova se l'input non è valido
         }

@@ -54,10 +54,11 @@ public class TesseraDAO {
         t.setNome(Utilities.getString("Inserisci il tuo nome"));
         t.setCognome(Utilities.getString("Inserisci il tuo cognome"));
         t.setData_di_nascita(Utilities.getDate("Inserisci la tua data di nascita (Formato 'dd/MM/yyyy') "));
-
+        t.setData_attivazione(LocalDate.now());
+        t.setScadenza(LocalDate.now().plusYears(1));
         save(t);
 
-        System.out.println("TesseraUtente utente generata con successo! Benvenuto in EpiTrans (C.A.G.A.M.F.");
+        System.out.println("TesseraUtente utente generata con successo! Benvenuto in EpiTrans (C.A.G.A.M.F.)");
     }
 
 

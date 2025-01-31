@@ -16,43 +16,52 @@ public class Console {
     public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("TrasportoPubblico_Team2");
     public static EntityManager em = emf.createEntityManager();
 
-Scanner sc = new Scanner(System.in);
-//UtenteDAO ud = new UtenteDAO(em);
-TesseraDAO td = new TesseraDAO(em);
-PuntoVenditaDAO pd = new PuntoVenditaDAO(em);
-AmministratoreDAO ad = new AmministratoreDAO(em);
-VeicoloDAO vd = new VeicoloDAO(em);
+    Scanner sc = new Scanner(System.in);
+    //UtenteDAO ud = new UtenteDAO(em);
+    TesseraDAO td = new TesseraDAO(em);
+    PuntoVenditaDAO pd = new PuntoVenditaDAO(em);
+    AmministratoreDAO ad = new AmministratoreDAO(em);
+    VeicoloDAO vd = new VeicoloDAO(em);
 
-private String text = "Digita 1 per passare alla modalità amministratore \n" +
-        "Digita 2 se sei un utente \n" +
-        "Digita 3 per Viaggiare";
+    private String text = "Digita 1 per passare alla modalità amministratore \n" +
+            "Digita 2 se sei un utente \n" +
+            "Digita 3 per Viaggiare";
 
 
-    public void start (){
+    public void start() {
         System.out.println(text);
         String choice = "";
         choice = sc.nextLine();
+        while (true) {
+            switch (choice) {
 
-        switch(choice){
+                case "1":
+                    ad.gestioneAmministratore();
+                    break;
 
-            case "1":
-                ad.gestioneAmministratore();
-                break;
+                case "2":
+                    // Utente
+                   boolean continua = true;
+                    while (continua){
+                    pd.operazioniUtente();
+                        System.out.println("Vuoi continuare con gli acquisti? y/n");
+                        choice = sc.nextLine();
+                        if (choice.equals("n")){
+                            continua = false;
+                        }
+                    }
+                    vd.ciclo();
+                    break;
 
-            case "2":
-                // Utente
-                pd.operazioniUtente();
-                break;
-
-            case "3":
-                //Tratta
-               vd.ciclo();
-                System.out.println();
-                break;
+                case "3":
+                    //Tratta
+                    vd.ciclo();
+                    System.out.println();
+                    break;
 
 
+            }
         }
-
 
     }
 }
