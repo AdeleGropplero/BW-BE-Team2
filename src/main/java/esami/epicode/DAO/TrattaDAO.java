@@ -13,7 +13,7 @@ import java.util.List;
 public class TrattaDAO {
     private final EntityManager em;
 
-    VeicoloDAO veicoloDAO = new VeicoloDAO(em);
+
 
 
     Tratta t1 = new Tratta("Colosseo", "Piazza Cavour", 15);
@@ -88,6 +88,7 @@ public class TrattaDAO {
     }
 
     public Veicolo veicoloAssociatoPerTratta(int scelta) {
+        VeicoloDAO veicoloDAO=new VeicoloDAO(Utilities.em);
         // Restituisce il veicolo associato alla tratta selezionata
         switch (scelta) {
             case 0: return veicoloDAO.getByID(1);  // Prima tratta, primo veicolo
