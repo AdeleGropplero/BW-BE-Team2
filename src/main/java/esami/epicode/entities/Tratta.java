@@ -32,8 +32,7 @@ public class Tratta {
     }
 
     public int calcTempoEffettivo(){
-        int tempoEffettivo = (int) (tempoPrevisto + (Math.random() * 31));
-        return tempoEffettivo;
+        return (int) (tempoPrevisto + (Math.random() * 31));
     }
 
     public List<Viaggio> getViaggi() {

@@ -4,11 +4,10 @@ import esami.epicode.Entity.Biglietto;
 import esami.epicode.entities.*;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 public class VeicoloDAO {
-
-
 
     private EntityManager em;
 
@@ -53,7 +52,7 @@ public class VeicoloDAO {
 
         em.getTransaction().begin();
 
-        TypedQuery<Periodo> query = em.createQuery(sql, Periodo.class);
+        Query query = em.createQuery(sql);
 
         query.setParameter("id", t.getCodiceVeicolo());
 
@@ -66,7 +65,7 @@ public class VeicoloDAO {
 
             em.getTransaction().begin();
 
-            TypedQuery<Periodo> query = em.createQuery(sql, Periodo.class);
+            Query query = em.createQuery(sql);
 
             query.setParameter("id", b.getId());
 

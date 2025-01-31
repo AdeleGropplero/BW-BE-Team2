@@ -32,7 +32,7 @@ public class Tram extends Veicolo {
     @Override
     public String toString() {
         return "Tram{" +
-                "id=" +
+                "id=" + getCodiceVeicolo() +
                 '}';
     }
 

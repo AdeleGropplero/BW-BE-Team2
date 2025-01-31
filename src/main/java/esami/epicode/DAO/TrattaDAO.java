@@ -6,7 +6,7 @@ import esami.epicode.entities.Tratta;
 import javax.persistence.EntityManager;
 
 public class TrattaDAO {
-    private EntityManager em;
+    private final EntityManager em;
 
     Tratta t1 = new Tratta("Colosseo", "Piazza Cavour", 15);
     Tratta t2 = new Tratta("Piazza Mirti", "Piramide", 35);

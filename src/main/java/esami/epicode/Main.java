@@ -10,38 +10,37 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 
-public class Main 
-{     public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("TrasportoPubblico_Team2");
+public class Main {
+    public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("TrasportoPubblico_Team2");
     public static EntityManager em = emf.createEntityManager();
-    public static void main( String[] args ) {
-    Console console = new Console();
+
+    public static void main(String[] args) {
+        Console console = new Console();
 
         Scanner sc = new Scanner(System.in);
-        VeicoloDAO veicoloDAO = new VeicoloDAO(em);
-/*
-        MacchinettaDAO macchinettaDAO = new MacchinettaDAO(em);
-        macchinettaDAO.istanziaMacchinette(); //create quattro macchinette.
+//
 
-        Rivenditore_autorizzatoDAO rivenditoreDAO = new Rivenditore_autorizzatoDAO(em);
-        rivenditoreDAO.istanziaRivenditore(); //creati quattro rivenditori.
-
-        TrattaDAO trattaDAO = new TrattaDAO(em);
-        trattaDAO.istanziaTratta(); //create quattro tratte.
-
-        TesseraDAO tesseraUtente = new TesseraDAO(em);
-        tesseraUtente.istanziaTessereUtente(); //create 6 tessere
-
-
-
-        veicoloDAO.istanziaVeicoli();
-
-        ViaggioDAO viaggioDAO = new ViaggioDAO(em);
-        viaggioDAO.istanziaViaggio(); //creati 4 viaggi
-
-        Titolo_di_viaggioDAO titoloDiViaggioDAO = new Titolo_di_viaggioDAO(em);
-        titoloDiViaggioDAO.istanziaTitoloDiViaggio(); //creati 6 titoli di viaggio
-*/
-
+//        MacchinettaDAO macchinettaDAO = new MacchinettaDAO(em);
+//        macchinettaDAO.istanziaMacchinette(); //create quattro macchinette.
+//
+//        Rivenditore_autorizzatoDAO rivenditoreDAO = new Rivenditore_autorizzatoDAO(em);
+//        rivenditoreDAO.istanziaRivenditore(); //creati quattro rivenditori.
+//
+//        TrattaDAO trattaDAO = new TrattaDAO(em);
+//        trattaDAO.istanziaTratta(); //create quattro tratte.
+//
+//        TesseraDAO tesseraUtente = new TesseraDAO(em);
+//        tesseraUtente.istanziaTessereUtente(); //create 6 tessere
+//
+//
+         VeicoloDAO veicoloDAO = new VeicoloDAO(em);
+//         veicoloDAO.istanziaVeicoli();
+//
+//        ViaggioDAO viaggioDAO = new ViaggioDAO(em);
+//        viaggioDAO.istanziaViaggio(); //creati 4 viaggi
+//
+//        Titolo_di_viaggioDAO titoloDiViaggioDAO = new Titolo_di_viaggioDAO(em);
+//        titoloDiViaggioDAO.istanziaTitoloDiViaggio(); //creati 6 titoli di viaggio
 
 
 //        Veicolo v = new Tram();
@@ -57,7 +56,10 @@ public class Main
 //        pmd.saveParcoMezzi(pm);
 //        pmd.saveVeicolo(v);
 
+        AmministratoreDAO amministratoreDao = new AmministratoreDAO(em);
 
+//        amministratoreDao.putManutenzione(veicoloDAO.getByID(1));
+//        amministratoreDao.leftManutenzione(LocalDate.of(2025,2,15), veicoloDAO.getByID(1).getCodiceVeicolo());
 
 
         em.close();
