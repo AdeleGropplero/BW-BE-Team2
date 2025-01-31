@@ -19,6 +19,7 @@ public class PuntoVenditaDAO {
 
     MacchinettaDAO macchinettaDAO = new MacchinettaDAO(em);
     Rivenditore_autorizzatoDAO rivenditoreDAO = new Rivenditore_autorizzatoDAO(em);
+    Titolo_di_viaggioDAO titoloDiViaggioDAO = new Titolo_di_viaggioDAO(em);
 
     TesseraDAO tesseraDAO = new TesseraDAO(em);
 
@@ -66,7 +67,7 @@ public class PuntoVenditaDAO {
                 //All'utente verrà chiesto di selezionare la location della macchinetta (vedi MacchinettaDAO)
                 Macchinetta macchinetta = macchinettaDAO.sceltaMacchinetta();
                 //Verrà ora istanziato e salvato un oggetto biglietto, con location specifica.
-                acquistaBiglietto(macchinetta);
+                titoloDiViaggioDAO.acquistaBiglietto(macchinetta);
                 break;
             case 2:
 
@@ -81,7 +82,7 @@ public class PuntoVenditaDAO {
                 switch (titoloDiViaggio) {
                     case "1":
                         //metodo acquista biglietto 🟩
-                        acquistaBiglietto(rivenditore);
+                        titoloDiViaggioDAO.acquistaBiglietto(rivenditore);
                         break;
                     case "2":
                         //metodo acquisto abbonamento 🟩
@@ -114,10 +115,7 @@ public class PuntoVenditaDAO {
         return m;
     }*/
 
-    public void acquistaBiglietto(PuntoVendita p) {
-        Biglietto b = new Biglietto(p);
-        System.out.println("Biglietto acquistato correttamente");
-    }
+
 
 
 }

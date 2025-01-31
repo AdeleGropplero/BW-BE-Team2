@@ -1,9 +1,6 @@
 package esami.epicode.DAO;
 
-import esami.epicode.Entity.Abbonamento;
-import esami.epicode.Entity.Biglietto;
-import esami.epicode.Entity.TesseraUtente;
-import esami.epicode.Entity.TitoloDiViaggio;
+import esami.epicode.Entity.*;
 import esami.epicode.Enum.Cadenza;
 import esami.epicode.Utilities.Utilities;
 import esami.epicode.entities.Veicolo;
@@ -16,6 +13,7 @@ import java.time.LocalDate;
 public class Titolo_di_viaggioDAO {
 
     private EntityManager em;
+
     public Titolo_di_viaggioDAO(EntityManager em) {
         this.em = em;
     }
@@ -40,9 +38,9 @@ public class Titolo_di_viaggioDAO {
     }
 
     public void save(TitoloDiViaggio e) {
-        em.getTransaction().begin();
-        em.persist(e);
-        em.getTransaction().commit();
+        Utilities.em.getTransaction().begin();
+        Utilities.em.persist(e);
+        Utilities.em.getTransaction().commit();
     }
 
     public TitoloDiViaggio getByID(long id) {
@@ -54,4 +52,12 @@ public class Titolo_di_viaggioDAO {
         em.remove(e);
         em.getTransaction().commit();
     }
+
+    public void acquistaBiglietto(PuntoVendita p) {
+        TitoloDiViaggio t = new Biglietto(p);
+        save(t);
+        System.out.println("Biglietto acquistato correttamente");
+    }
 }
+
+

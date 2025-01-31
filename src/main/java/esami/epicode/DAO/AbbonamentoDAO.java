@@ -51,7 +51,8 @@ public class AbbonamentoDAO {
     public void acquistoAbbonamento(Rivenditore_autorizzato rivenditore) { // 🟦
         System.out.println("Acquisto abbonamento : Inserisci il tuo numero di tesseraUtente: ");
         Query q = em.createQuery("SELECT t FROM TesseraUtente t WHERE t.id = :nTessera");
-        q.setParameter("nTessera", Utilities.sc.nextLine());
+        q.setParameter("nTessera", Utilities.sc.nextLong());
+        Utilities.sc.nextLine();
         TesseraUtente tesseraUtente = (TesseraUtente) q.getSingleResult();
         if (tesseraUtente != null) {
             if (tesseraUtente.getScadenza().isAfter(LocalDate.now())) {
@@ -63,13 +64,13 @@ public class AbbonamentoDAO {
                     case "1":
                         System.out.println("Hai scelto un abbonamento SETTIMANALE!");
                         Cadenza cadenzaSettimanale = Cadenza.SETTIMANALE;
-                        Abbonamento a = new Abbonamento(rivenditore,cadenzaSettimanale, tesseraUtente);
+                        Abbonamento a = new Abbonamento(rivenditore, cadenzaSettimanale, tesseraUtente);
                         save(a);
                         break;
                     case "2":
                         System.out.println("Hai scelto un abbonamento MENSILE!");
                         Cadenza cadenzaMensile = Cadenza.MENSILE;
-                        Abbonamento b = new Abbonamento(rivenditore ,cadenzaMensile, tesseraUtente);
+                        Abbonamento b = new Abbonamento(rivenditore, cadenzaMensile, tesseraUtente);
                         save(b);
                         break;
                     default:

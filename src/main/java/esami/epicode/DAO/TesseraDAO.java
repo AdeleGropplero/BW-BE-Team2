@@ -33,9 +33,9 @@ public class TesseraDAO {
     }
 
     public void save(TesseraUtente e) {
-        em.getTransaction().begin();
-        em.persist(e);
-        em.getTransaction().commit();
+        Utilities.em.getTransaction().begin();
+        Utilities.em.persist(e);
+        Utilities.em.getTransaction().commit();
     }
 
     public TesseraUtente getByID(long id) {
@@ -55,7 +55,7 @@ public class TesseraDAO {
         t.setCognome(Utilities.getString("Inserisci il tuo cognome"));
         t.setData_di_nascita(Utilities.getDate("Inserisci la tua data di nascita (Formato 'dd/MM/yyyy') "));
 
-        em.persist(t);
+        save(t);
 
         System.out.println("TesseraUtente utente generata con successo! Benvenuto in EpiTrans (C.A.G.A.M.F.");
     }
