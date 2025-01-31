@@ -5,10 +5,13 @@ import esami.epicode.Entity.Biglietto;
 import esami.epicode.Entity.TitoloDiViaggio;
 import esami.epicode.Enum.Cadenza;
 import esami.epicode.Utilities.Utilities;
+import esami.epicode.entities.Tratta;
 import esami.epicode.entities.Veicolo;
 import esami.epicode.entities.Viaggio;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import java.util.List;
 
 public class ViaggioDAO {
 
@@ -53,4 +56,15 @@ public class ViaggioDAO {
         em.remove(e);
         em.getTransaction().commit();
     }
+
+/*    public List<Viaggio> findAll(){
+        Query q= em.createQuery("SELECT t FROM Viaggio t ");
+        return q.getResultList();
+    }
+
+public void getVeicolo(long tratta_id){
+        List<Viaggio> viaggi = findAll();
+        viaggi.forEach();
+}*/
+
 }

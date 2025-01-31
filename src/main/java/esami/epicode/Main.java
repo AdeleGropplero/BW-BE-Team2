@@ -50,8 +50,8 @@ public class Main {
 //        ParcoMezziDao pmd = new ParcoMezziDao(em);
 
 
-//          console.start();
-        trattaDAO.scegliTratta();
+       console.start();
+      //  trattaDAO.scegliTratta();
 
 //        pmd.saveParcoMezzi(pm);
 //        pmd.saveVeicolo(v);

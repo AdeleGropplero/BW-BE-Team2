@@ -3,6 +3,7 @@ package esami.epicode.entities;
 import esami.epicode.DAO.AmministratoreDAO;
 import esami.epicode.DAO.PuntoVenditaDAO;
 import esami.epicode.DAO.TesseraDAO;
+import esami.epicode.DAO.VeicoloDAO;
 //import esami.epicode.DAO.UtenteDAO;
 
 import javax.persistence.EntityManager;
@@ -20,6 +21,7 @@ Scanner sc = new Scanner(System.in);
 TesseraDAO td = new TesseraDAO(em);
 PuntoVenditaDAO pd = new PuntoVenditaDAO(em);
 AmministratoreDAO ad = new AmministratoreDAO(em);
+VeicoloDAO vd = new VeicoloDAO(em);
 
 private String text = "Digita 1 per passare alla modalità amministratore \n" +
         "Digita 2 se sei un utente \n" +
@@ -44,6 +46,7 @@ private String text = "Digita 1 per passare alla modalità amministratore \n" +
 
             case "3":
                 //Tratta
+              //  vd.ciclo();
                 System.out.println();
                 break;
 

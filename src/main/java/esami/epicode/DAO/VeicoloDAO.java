@@ -11,10 +11,11 @@ public class VeicoloDAO {
 
     private EntityManager em;
 
-    Titolo_di_viaggioDAO biglietto=new Titolo_di_viaggioDAO(em);
-    TrattaDAO tratta=new TrattaDAO(em);
+    Titolo_di_viaggioDAO biglietto = new Titolo_di_viaggioDAO(em);
+    TrattaDAO tratta = new TrattaDAO(em);
 
-    Veicolo v1 = new Autobus(true ); // capire meglio domani // 🟥 da sistemare
+
+    Veicolo v1 = new Autobus(true); // capire meglio domani // 🟥 da sistemare
     Veicolo v2 = new Autobus(true);
     Veicolo v5 = new Autobus(false);
     Veicolo v3 = new Tram(true);
@@ -79,22 +80,26 @@ public class VeicoloDAO {
 
     }
 
-    public void ciclo(){
+    public void ciclo() {
 
-        boolean loop=true;
-        while(loop){
+        boolean loop = true;
+        long idTratta = tratta.scegliTratta();
+        while (loop) {
             long codiceBiglietto = Utilities.getLong("Inserisci codice biglietto");
-            vidimaBiglietto((Biglietto) biglietto.getByID(codiceBiglietto),tratta.getByID(tratta.scegliTratta()).getVeicolo());
+            Utilities.sc.nextLine();
+            Veicolo veicoloAssociato = getByID(idTratta); // Assumendo che idTratta corrisponda all'id del veicolo
+            vidimaBiglietto((Biglietto) biglietto.getByID(codiceBiglietto), veicoloAssociato);
             System.out.println("1 per procedere con il viaggio, 2 per vidimare altri biglietti");
-            String s=Utilities.sc.nextLine();
+            String s = Utilities.sc.nextLine();
 
-            if(s.equals("1")){
-                loop=false;
-            }else if(!s.equals("1")&&!s.equals("2")) {
+            if (s.equals("1")) {
+                loop = false;
+            } else if (!s.equals("1") && !s.equals("2")) {
                 System.out.println("valore non valido");
             }
         }
     }
+
 
 
 
