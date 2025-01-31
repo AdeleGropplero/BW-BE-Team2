@@ -1,6 +1,7 @@
 package esami.epicode.DAO;
 
 import esami.epicode.Entity.Biglietto;
+import esami.epicode.Utilities.Utilities;
 import esami.epicode.entities.*;
 
 import javax.persistence.EntityManager;
@@ -8,9 +9,10 @@ import javax.persistence.TypedQuery;
 
 public class VeicoloDAO {
 
-
-
     private EntityManager em;
+
+    Titolo_di_viaggioDAO biglietto=new Titolo_di_viaggioDAO(em);
+    TrattaDAO tratta=new TrattaDAO(em);
 
     Veicolo v1 = new Autobus(true ); // capire meglio domani // 🟥 da sistemare
     Veicolo v2 = new Autobus(true);
@@ -75,6 +77,23 @@ public class VeicoloDAO {
             em.getTransaction().commit();
         }
 
+    }
+
+    public void ciclo(){
+
+        boolean loop=true;
+        while(loop){
+            long codiceBiglietto = Utilities.getLong("Inserisci codice biglietto");
+            vidimaBiglietto((Biglietto) biglietto.getByID(codiceBiglietto),tratta.getByID(tratta.scegliTratta()).getVeicolo());
+            System.out.println("1 per procedere con il viaggio, 2 per vidimare altri biglietti");
+            String s=Utilities.sc.nextLine();
+
+            if(s.equals("1")){
+                loop=false;
+            }else if(!s.equals("1")&&!s.equals("2")) {
+                System.out.println("valore non valido");
+            }
+        }
     }
 
 

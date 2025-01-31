@@ -16,17 +16,20 @@ public class Tratta {
     private String capolinea;
     private int tempoPrevisto;
 
-
-
     @OneToMany (mappedBy = "tratta", cascade = CascadeType.ALL)
     private List<Viaggio> viaggi = new ArrayList<>();
 
-    public Tratta(String partenza, String capolinea, int tempoPrevisto) {
+    @OneToOne(mappedBy = "veicolo")
+    private Veicolo veicolo;
+
+    public Tratta(String partenza, String capolinea, int tempoPrevisto,Veicolo veicolo) {
         this.partenza = partenza;
         this.capolinea = capolinea;
         this.tempoPrevisto = tempoPrevisto;
-
+        this.veicolo=veicolo;
     }
+
+
 
     public Tratta() {
     }
@@ -76,6 +79,13 @@ public class Tratta {
         this.tempoPrevisto = tempoPrevisto;
     }
 
+    public Veicolo getVeicolo() {
+        return veicolo;
+    }
+
+    public void setVeicolo(Veicolo veicolo) {
+        this.veicolo = veicolo;
+    }
 
     @Override
     public String toString() {

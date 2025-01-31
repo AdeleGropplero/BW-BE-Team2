@@ -21,7 +21,7 @@ public class Main {
 
      //   MacchinettaDAO macchinettaDAO = new MacchinettaDAO(em);
      //   Rivenditore_autorizzatoDAO rivenditoreDAO = new Rivenditore_autorizzatoDAO(em);
-        // TrattaDAO trattaDAO = new TrattaDAO(em);
+         TrattaDAO trattaDAO = new TrattaDAO(em);
        //  TesseraDAO tesseraUtente = new TesseraDAO(em);
        // VeicoloDAO veicoloDAO = new VeicoloDAO(em);
        // ViaggioDAO viaggioDAO = new ViaggioDAO(em);
@@ -50,7 +50,8 @@ public class Main {
 //        ParcoMezziDao pmd = new ParcoMezziDao(em);
 
 
-          console.start();
+//          console.start();
+        trattaDAO.scegliTratta();
 
 //        pmd.saveParcoMezzi(pm);
 //        pmd.saveVeicolo(v);
